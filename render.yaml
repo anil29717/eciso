@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: etciso-quiz-game
+    env: python
+    buildCommand: pip install -r requirements_serverless.txt
+    startCommand: python app_serverless.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+    healthCheckPath: /
+    disk:
+      name: etciso-disk
+      mountPath: /tmp
+      sizeGB: 1
