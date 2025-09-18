@@ -93,7 +93,11 @@ def submit_user_info():
 
 @app.route('/industry-select')
 def industry_select():
-    return render_template('game/industry_select.html', industries=industries_data)
+    highlighted_industries = [industry for industry in industries_data if industry['is_highlighted']]
+    other_industries = [industry for industry in industries_data if not industry['is_highlighted']]
+    return render_template('game/industry_select.html', 
+                         highlighted_industries=highlighted_industries,
+                         other_industries=other_industries)
 
 @app.route('/company-info')
 def company_info():
