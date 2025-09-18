@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
-
-
+from flask_cors import cross_origin
 from werkzeug.utils import secure_filename
 from datetime import datetime
 import os
@@ -214,6 +213,108 @@ def admin_analytics():
     return render_template('admin/analytics.html', 
                          sessions=game_sessions, 
                          journeys=user_journeys)
+
+# API Routes
+@app.route('/api/get-suggestions', methods=['POST'])
+@cross_origin()
+def get_suggestions():
+    try:
+        data = request.get_json(force=True)
+        if not data:
+            return jsonify({'suggestions': []})
+            
+        query = data.get('query', '').strip().lower()
+        suggestion_type = data.get('type', 'name')
+        
+        if not query or len(query) < 2:
+            return jsonify({'suggestions': []})
+        
+        suggestions = []
+        
+        if suggestion_type == 'name':
+            # Sample names for suggestions
+            sample_names = [
+                'John Smith', 'Jane Doe', 'Michael Johnson', 'Sarah Wilson',
+                'David Brown', 'Lisa Davis', 'Robert Miller', 'Jennifer Garcia',
+                'William Rodriguez', 'Mary Martinez', 'James Anderson', 'Patricia Taylor'
+            ]
+            matching_names = [name for name in sample_names if query in name.lower()]
+            suggestions = matching_names[:10]
+        
+        elif suggestion_type == 'company':
+            # Sample companies for suggestions
+            sample_companies = [
+                'Microsoft Corporation', 'Apple Inc.', 'Google LLC', 'Amazon.com Inc.',
+                'Meta Platforms Inc.', 'Tesla Inc.', 'Netflix Inc.', 'Adobe Inc.',
+                'Salesforce Inc.', 'Oracle Corporation', 'IBM Corporation', 'Intel Corporation'
+            ]
+            matching_companies = [company for company in sample_companies if query in company.lower()]
+            suggestions = matching_companies[:10]
+        
+        return jsonify({'suggestions': suggestions})
+    
+    except Exception as e:
+        print(f"Error getting suggestions: {e}")
+        return jsonify({'error': str(e), 'suggestions': []}), 500
+
+@app.route('/api/start-game', methods=['POST'])
+@cross_origin()
+def start_game():
+    try:
+        data = request.get_json(force=True)
+        if not data:
+            return jsonify({'success': False, 'message': 'No data provided'}), 400
+        
+        # Get user information from request
+        name = data.get('name')
+        company_name = data.get('company_name')
+        industry = data.get('industry')
+        email = data.get('email', '')
+        phone = data.get('phone', '')
+        job_title = data.get('job_title', '')
+        department = data.get('department', '')
+        
+        # Check if this is an industry update for existing session
+        if industry and not name and not company_name and 'journey_id' in session:
+            session['industry'] = industry
+            return jsonify({'success': True, 'message': 'Industry updated'})
+        
+        # Create new game session
+        if name and company_name:
+            journey_id = str(uuid.uuid4())
+            session['journey_id'] = journey_id
+            session['name'] = name
+            session['company_name'] = company_name
+            session['industry'] = industry
+            session['email'] = email
+            session['phone'] = phone
+            session['job_title'] = job_title
+            session['department'] = department
+            session['current_question'] = 0
+            session['score'] = 0
+            session['start_time'] = datetime.now().isoformat()
+            
+            # Store in memory
+            user_journeys.append({
+                'id': journey_id,
+                'name': name,
+                'company_name': company_name,
+                'industry': industry,
+                'email': email,
+                'phone': phone,
+                'job_title': job_title,
+                'department': department,
+                'start_time': datetime.now().isoformat(),
+                'completed': False
+            })
+            
+            return jsonify({'success': True, 'message': 'Game started successfully'})
+        
+        return jsonify({'success': False, 'message': 'Missing required information'})
+    
+    except Exception as e:
+        print(f"Error starting game: {e}")
+        return jsonify({'success': False, 'error': str(e), 'message': 'Server error'}), 500
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
