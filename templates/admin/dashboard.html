@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Cache Digitech Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo svg {
+            width: 120px;
+            height: auto;
+        }
+
+        .admin-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #dc3545, #c82333);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #dc3545;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .stat-change {
+            font-size: 0.9rem;
+            margin-top: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .stat-change.positive {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .stat-change.negative {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .management-section {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #1e7e34;
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .btn-light {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-light:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .section-content {
+            padding: 30px;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .action-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .action-card:hover {
+            background: white;
+            border-color: #dc3545;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .action-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .action-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 10px;
+        }
+
+        .action-description {
+            font-size: 0.9rem;
+            color: #6c757d;
+            line-height: 1.4;
+        }
+
+        .recent-activity {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .activity-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            padding: 20px 30px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: background 0.3s ease;
+        }
+
+        .activity-item:hover {
+            background: #f8f9fa;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .activity-icon.user {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .activity-icon.question {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .activity-icon.game {
+            background: #e8f5e8;
+            color: #388e3c;
+        }
+
+        .activity-icon.admin {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #212529;
+            margin-bottom: 5px;
+        }
+
+        .activity-time {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .upload-instructions {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .upload-instructions h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        
+        .upload-instructions ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .sample-format {
+            background: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .sample-format code {
+            background: #f1f3f4;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+            display: block;
+            margin: 2px 0;
+        }
+        
+        .file-upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+        
+        .file-upload-area:hover {
+            border-color: #007bff;
+        }
+        
+        .upload-placeholder {
+            cursor: pointer;
+        }
+        
+        .upload-placeholder i {
+            font-size: 48px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        
+        .upload-placeholder p {
+            margin: 10px 0 5px 0;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .upload-placeholder small {
+            color: #666;
+        }
+        
+        .file-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            background: #e8f5e8;
+            border-radius: 4px;
+        }
+        
+        .file-info i {
+            color: #28a745;
+        }
+        
+        .btn-remove {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .upload-progress {
+            margin: 20px 0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #007bff, #0056b3);
+            width: 0%;
+            transition: width 0.3s;
+            animation: progress-animation 2s infinite;
+        }
+        
+        .bulk-import-container {
+            padding: 20px;
+        }
+        
+        .import-description {
+            margin-bottom: 20px;
+        }
+        
+        .import-description h4 {
+            color: #dc3545;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .import-description p {
+            color: #6c757d;
+            line-height: 1.5;
+        }
+        
+        .import-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .import-status {
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+        
+        .import-status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .import-status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        @keyframes progress-animation {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+        }
+        
+        .upload-results {
+            margin: 20px 0;
+        }
+        
+        .success-message {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            color: #155724;
+        }
+        
+        .success-message i {
+            color: #28a745;
+        }
+        
+        .results-errors {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+        }
+        
+        .results-errors h5 {
+            margin: 0 0 10px 0;
+            color: #721c24;
+        }
+        
+        .results-errors ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .results-errors li {
+            color: #721c24;
+            margin: 5px 0;
+        }
+        
+        .category-management-container {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .add-category-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .add-category-section h4 {
+            margin: 0 0 15px 0;
+            color: #333;
+        }
+        
+        .inline-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .inline-form input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .categories-list-section h4 {
+            margin: 0 0 15px 0;
+            color: #333;
+        }
+        
+        .categories-table-container {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .categories-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        
+        .categories-table th,
+        .categories-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .categories-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .categories-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .actions-cell {
+            white-space: nowrap;
+        }
+        
+        .btn-sm {
+            padding: 4px 8px;
+            font-size: 12px;
+            margin: 0 2px;
+        }
+        
+        .btn-primary {
+            background: #007bff;
+            color: white;
+            border: 1px solid #007bff;
+        }
+        
+        .btn-primary:hover {
+            background: #0056b3;
+            border-color: #0056b3;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+            border: 1px solid #dc3545;
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+            border-color: #bd2130;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            margin: 50px auto;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+            animation: slideInUp 0.3s ease;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media screen and (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .section-actions {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .activity-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .modal-content {
+                margin: 20px auto;
+                width: 95%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .stat-card {
+                padding: 20px;
+            }
+
+            .section-content {
+                padding: 20px;
+            }
+
+            .action-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <svg width="120" height="48" viewBox="0 0 120 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="120" height="48" rx="8" fill="white" fill-opacity="0.2"/>
+                    <text x="60" y="30" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Cache Digitech</text>
+                </svg>
+                <div class="admin-title">Admin Dashboard</div>
+            </div>
+            <div class="header-actions">
+                <div class="admin-info">
+                    <span>👤</span>
+                    <span id="adminName">Administrator</span>
+                </div>
+                <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Statistics Cards -->
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <span class="stat-icon">👥</span>
+                <div class="stat-number" id="totalUsers">0</div>
+                <div class="stat-label">Total Players</div>
+                <div class="stat-change positive" id="usersChange">+0 today</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">❓</span>
+                <div class="stat-number" id="totalQuestions">0</div>
+                <div class="stat-label">Total Questions</div>
+                <div class="stat-change positive" id="questionsChange">Across all categories</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">🎮</span>
+                <div class="stat-number" id="totalGames">0</div>
+                <div class="stat-label">Games Played</div>
+                <div class="stat-change positive" id="gamesChange">+0 today</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">📊</span>
+                <div class="stat-number" id="avgScore">0%</div>
+                <div class="stat-label">Average Score</div>
+                <div class="stat-change positive" id="scoreChange">Overall performance</div>
+            </div>
+        </div>
+
+        <!-- Bulk Question Import -->
+        <div class="management-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <span>📁</span>
+                    Bulk Question Import
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="bulk-import-container">
+                    <div class="import-description">
+                        <h4>Import Questions by Industry</h4>
+                        <p>Upload a text file containing 10 questions for each of the 22 industries. The system will automatically create categories and import questions for industry-specific gameplay.</p>
+                    </div>
+                    <div class="import-actions">
+                        <button class="btn btn-primary" onclick="openBulkQuestionImportModal()">📁 Import Questions File</button>
+                        <div class="import-status" id="importStatus" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="management-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <span>⚡</span>
+                    Quick Actions
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="quick-actions">
+                    <div class="action-card" onclick="openModal('addQuestionModal')">
+                        <span class="action-icon">➕</span>
+                        <div class="action-title">Add Question</div>
+                        <div class="action-description">Create new questions for the game</div>
+                    </div>
+                    <div class="action-card" onclick="openModal('addUserModal')">
+                        <span class="action-icon">👤</span>
+                        <div class="action-title">Add User</div>
+                        <div class="action-description">Pre-register users for autofill</div>
+                    </div>
+                    <div class="action-card" onclick="openModal('bulkUserModal')">
+                        <span class="action-icon">👥</span>
+                        <div class="action-title">Bulk Add Users</div>
+                        <div class="action-description">Upload multiple users via CSV file</div>
+                    </div>
+                    <div class="action-card" onclick="openModal('categoryManagementModal')">
+                        <span class="action-icon">📂</span>
+                        <div class="action-title">Manage Categories</div>
+                        <div class="action-description">Organize question categories</div>
+                    </div>
+                    <div class="action-card" onclick="exportData()">
+                        <span class="action-icon">📊</span>
+                        <div class="action-title">Export Data</div>
+                        <div class="action-description">Download game statistics</div>
+                    </div>
+                    <div class="action-card" onclick="window.location.href='/admin/analytics'">
+                        <span class="action-icon">📈</span>
+                        <div class="action-title">Question Analytics</div>
+                        <div class="action-description">Detailed question performance insights</div>
+                    </div>
+                    <div class="action-card" onclick="resetSession()">
+                        <span class="action-icon">🔄</span>
+                        <div class="action-title">Reset Session</div>
+                        <div class="action-description">Clear game sessions for new event</div>
+                    </div>
+                    <div class="action-card" onclick="downloadExcelReport()">
+                        <span class="action-icon">📋</span>
+                        <div class="action-title">Excel Report</div>
+                        <div class="action-description">Download complete user report</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Management Sections -->
+        <div class="management-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <span>❓</span>
+                    Question Management
+                </div>
+                <div class="section-actions">
+                    <button class="btn btn-light" onclick="openModal('addQuestionModal')">➕ Add Question</button>
+                    <button class="btn btn-light" onclick="manageCategories()">🏷️ Categories</button>
+                    <button class="btn btn-light" onclick="bulkImport()">📁 Bulk Import</button>
+                </div>
+            </div>
+            <div class="section-content">
+                <div id="questionsTable">
+                    <p>Loading questions...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="management-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <span>👥</span>
+                    User Management
+                </div>
+                <div class="section-actions">
+                    <button class="btn btn-light" onclick="openModal('addUserModal')">➕ Add User</button>
+                    <button class="btn btn-light" onclick="exportUsers()">📊 Export Users</button>
+                </div>
+            </div>
+            <div class="section-content">
+                <div id="usersTable">
+                    <p>Loading users...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="recent-activity">
+            <div class="section-header">
+                <div class="section-title">
+                    <span>📋</span>
+                    Recent Activity
+                </div>
+                <div class="section-actions">
+                    <button class="btn btn-light" onclick="refreshActivity()">🔄 Refresh</button>
+                </div>
+            </div>
+            <div class="activity-list" id="activityList">
+                <div class="activity-item">
+                    <div class="activity-icon game">🎮</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Loading recent activity...</div>
+                        <div class="activity-time">Please wait</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Question Modal -->
+    <div class="modal" id="addQuestionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Add New Question</div>
+                <button class="modal-close" onclick="closeModal('addQuestionModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="addQuestionForm">
+                    <div class="form-group">
+                        <label>Category:</label>
+                        <select id="questionCategory" required>
+                            <option value="">Select Category</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Question:</label>
+                        <textarea id="questionText" required rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Option A:</label>
+                        <input type="text" id="optionA" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Option B:</label>
+                        <input type="text" id="optionB" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Option C:</label>
+                        <input type="text" id="optionC" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Option D:</label>
+                        <input type="text" id="optionD" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Correct Answer:</label>
+                        <select id="correctAnswer" required>
+                            <option value="">Select Correct Answer</option>
+                            <option value="A">Option A</option>
+                            <option value="B">Option B</option>
+                            <option value="C">Option C</option>
+                            <option value="D">Option D</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Explanation (Optional):</label>
+                        <textarea id="explanation" rows="2"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success">Add Question</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('addQuestionModal')">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal" id="addUserModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Add Pre-registered User</div>
+                <button class="modal-close" onclick="closeModal('addUserModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="addUserForm">
+                    <div class="form-group">
+                        <label>Full Name:</label>
+                        <input type="text" id="userName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Company Name:</label>
+                        <input type="text" id="userCompany" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Industry:</label>
+                        <select id="userIndustry" required>
+                            <option value="">Select Industry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Email (Optional):</label>
+                        <input type="email" id="userEmail">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone (Optional):</label>
+                        <input type="tel" id="userPhone">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success">Add User</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('addUserModal')">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk User Upload Modal -->
+    <div class="modal" id="bulkUserModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Bulk Add Users</div>
+                <button class="modal-close" onclick="closeModal('bulkUserModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-instructions">
+                    <h4>Upload Instructions:</h4>
+                    <ul>
+                        <li>Upload three separate text files (.txt)</li>
+                        <li><strong>Names file:</strong> One name per line</li>
+                        <li><strong>Companies file:</strong> One company name per line</li>
+                        <li><strong>Industries file:</strong> One industry per line</li>
+                        <li>Files will be matched serially (1st name → 1st company → 1st industry)</li>
+                    </ul>
+                    <div class="sample-format">
+                        <strong>Sample format:</strong><br>
+                        <strong>names.txt:</strong> <code>John Doe<br>Jane Smith<br>Bob Johnson</code><br>
+                        <strong>companies.txt:</strong> <code>ABC Corp<br>XYZ Ltd<br>Tech Solutions</code><br>
+                        <strong>industries.txt:</strong> <code>Technology<br>Healthcare<br>Finance</code>
+                    </div>
+                </div>
+                
+                <form id="bulkUserForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Names File (.txt):</label>
+                        <div class="file-upload-area">
+                            <input type="file" id="namesFile" accept=".txt" required>
+                            <div class="file-info" id="namesFileInfo" style="display: none;">
+                                <i class="fas fa-file-text"></i>
+                                <span id="namesFileName"></span>
+                                <button type="button" onclick="clearFile('names')" class="btn-remove">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Companies File (.txt):</label>
+                        <div class="file-upload-area">
+                            <input type="file" id="companiesFile" accept=".txt" required>
+                            <div class="file-info" id="companiesFileInfo" style="display: none;">
+                                <i class="fas fa-file-text"></i>
+                                <span id="companiesFileName"></span>
+                                <button type="button" onclick="clearFile('companies')" class="btn-remove">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Industries File (.txt):</label>
+                        <div class="file-upload-area">
+                            <input type="file" id="industriesFile" accept=".txt" required>
+                            <div class="file-info" id="industriesFileInfo" style="display: none;">
+                                <i class="fas fa-file-text"></i>
+                                <span id="industriesFileName"></span>
+                                <button type="button" onclick="clearFile('industries')" class="btn-remove">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="upload-progress" id="uploadProgress" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">Uploading...</div>
+                    </div>
+                    
+                    <div class="upload-results" id="uploadResults" style="display: none;">
+                        <div class="results-summary" id="resultsSummary"></div>
+                        <div class="results-errors" id="resultsErrors" style="display: none;">
+                            <h5>Errors:</h5>
+                            <ul id="errorsList"></ul>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success" id="uploadBtn" disabled>Upload Users</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('bulkUserModal')">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Management Modal -->
+    <div class="modal" id="categoryManagementModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <div class="modal-title">Manage Categories</div>
+                <button class="modal-close" onclick="closeModal('categoryManagementModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="category-management-container">
+                    <div class="add-category-section">
+                        <h4>Add New Category</h4>
+                        <form id="addCategoryForm" class="inline-form">
+                            <input type="text" id="newCategoryName" placeholder="Category name" required>
+                            <button type="submit" class="btn btn-success">Add Category</button>
+                        </form>
+                    </div>
+                    
+                    <div class="categories-list-section">
+                        <h4>Existing Categories</h4>
+                        <div class="categories-table-container">
+                            <table class="categories-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Questions</th>
+                                        <th>Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="categoriesTableBody">
+                                    <!-- Categories will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Category Modal -->
+    <div class="modal" id="editCategoryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Edit Category</div>
+                <button class="modal-close" onclick="closeModal('editCategoryModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editCategoryForm">
+                    <input type="hidden" id="editCategoryId">
+                    <div class="form-group">
+                        <label>Category Name:</label>
+                        <input type="text" id="editCategoryName" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success">Update Category</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('editCategoryModal')">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Question Import Modal -->
+    <div class="modal" id="bulkQuestionImportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Bulk Import Questions</div>
+                <button class="modal-close" onclick="closeBulkQuestionImportModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-instructions">
+                    <h4>File Format Instructions</h4>
+                    <p>Upload a text file with questions organized by industry. Each industry should have exactly 10 questions.</p>
+                    <div class="sample-format">
+                        <strong>Expected Format:</strong>
+                        <code>Technology</code>
+                        <code>Q: What is the primary function of a CPU?</code>
+                        <code>A) Store data permanently</code>
+                        <code>B) Process instructions</code>
+                        <code>C) Display graphics</code>
+                        <code>D) Connect to internet</code>
+                        <code>Answer: B</code>
+                        <code></code>
+                        <code>Q: Second question...</code>
+                        <code>... (repeat for 10 questions)</code>
+                        <code></code>
+                        <code>Healthcare</code>
+                        <code>Q: First healthcare question...</code>
+                        <code>... (repeat for 10 questions)</code>
+                    </div>
+                </div>
+                <form id="bulkQuestionImportForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Select Text File:</label>
+                        <div class="file-upload-area" id="questionFileUploadArea">
+                            <div class="upload-placeholder" id="questionUploadPlaceholder">
+                                <i>📁</i>
+                                <p>Click to select your questions file</p>
+                                <small>Supported format: .txt</small>
+                            </div>
+                            <div class="file-info" id="questionFileInfo" style="display: none;">
+                                <i>📄</i>
+                                <span id="questionFileName"></span>
+                                <button type="button" class="btn-remove" onclick="clearQuestionFile()">&times;</button>
+                            </div>
+                        </div>
+                        <input type="file" id="questionFile" accept=".txt" style="display: none;">
+                    </div>
+                    <div class="upload-progress" id="questionUploadProgress" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="questionProgressFill"></div>
+                        </div>
+                        <p id="questionProgressText">Uploading...</p>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success" id="importQuestionsBtn">Import Questions</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeBulkQuestionImportModal()">Cancel</button>
+                    </div>
+                </form>
+                <div id="questionUploadResults" style="display: none;">
+                    <div id="questionUploadSuccess" class="alert alert-success" style="display: none;">
+                        <h4>Import Successful!</h4>
+                        <p id="questionSuccessMessage"></p>
+                    </div>
+                    <div id="questionUploadErrors" class="alert alert-danger" style="display: none;">
+                        <h4>Import Completed with Errors:</h4>
+                        <ul id="questionErrorsList"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardData();
+            loadCategories();
+            loadIndustries();
+            setupForms();
+        });
+
+        async function loadDashboardData() {
+            try {
+                const response = await fetch('/admin/api/dashboard-stats');
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateStats(data.stats);
+                    loadRecentActivity();
+                }
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+            }
+        }
+
+        function updateStats(stats) {
+            document.getElementById('totalUsers').textContent = stats.total_users || 0;
+            document.getElementById('totalQuestions').textContent = stats.total_questions || 0;
+            document.getElementById('totalGames').textContent = stats.total_games || 0;
+            document.getElementById('avgScore').textContent = (stats.avg_score || 0) + '%';
+            
+            document.getElementById('usersChange').textContent = `+${stats.users_today || 0} today`;
+            document.getElementById('gamesChange').textContent = `+${stats.games_today || 0} today`;
+        }
+
+        async function loadCategories() {
+            try {
+                const response = await fetch('/admin/api/categories');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const select = document.getElementById('questionCategory');
+                    select.innerHTML = '<option value="">Select Category</option>';
+                    
+                    data.categories.forEach(category => {
+                        const option = document.createElement('option');
+                        option.value = category.id;
+                        option.textContent = category.name;
+                        select.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading categories:', error);
+            }
+        }
+
+        async function loadIndustries() {
+            try {
+                const response = await fetch('/admin/api/industries');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const select = document.getElementById('userIndustry');
+                    select.innerHTML = '<option value="">Select Industry</option>';
+                    
+                    data.industries.forEach(industry => {
+                        const option = document.createElement('option');
+                        option.value = industry.id;
+                        option.textContent = industry.name;
+                        select.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading industries:', error);
+            }
+        }
+
+        async function loadRecentActivity() {
+            try {
+                const response = await fetch('/admin/api/recent-activity');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const activityList = document.getElementById('activityList');
+                    activityList.innerHTML = '';
+                    
+                    data.activities.forEach(activity => {
+                        const item = createActivityItem(activity);
+                        activityList.appendChild(item);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading recent activity:', error);
+            }
+        }
+
+        function createActivityItem(activity) {
+            const item = document.createElement('div');
+            item.className = 'activity-item';
+            
+            const iconClass = activity.type === 'user' ? 'user' : 
+                             activity.type === 'question' ? 'question' : 
+                             activity.type === 'game' ? 'game' : 'admin';
+            
+            const icon = activity.type === 'user' ? '👤' : 
+                        activity.type === 'question' ? '❓' : 
+                        activity.type === 'game' ? '🎮' : '⚙️';
+            
+            item.innerHTML = `
+                <div class="activity-icon ${iconClass}">${icon}</div>
+                <div class="activity-content">
+                    <div class="activity-title">${activity.title}</div>
+                    <div class="activity-time">${activity.time}</div>
+                </div>
+            `;
+            
+            return item;
+        }
+
+        function setupForms() {
+            // Add Question Form
+            document.getElementById('addQuestionForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = {
+                    category_id: document.getElementById('questionCategory').value,
+                    question: document.getElementById('questionText').value,
+                    option_a: document.getElementById('optionA').value,
+                    option_b: document.getElementById('optionB').value,
+                    option_c: document.getElementById('optionC').value,
+                    option_d: document.getElementById('optionD').value,
+                    correct_answer: document.getElementById('correctAnswer').value,
+                    explanation: document.getElementById('explanation').value
+                };
+                
+                try {
+                    const response = await fetch('/admin/api/questions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        alert('Question added successfully!');
+                        closeModal('addQuestionModal');
+                        this.reset();
+                        loadDashboardData();
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                } catch (error) {
+                    console.error('Error adding question:', error);
+                    alert('Error adding question. Please try again.');
+                }
+            });
+            
+            // Add User Form
+            document.getElementById('addUserForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = {
+                    name: document.getElementById('userName').value,
+                    company: document.getElementById('userCompany').value,
+                    industry_id: document.getElementById('userIndustry').value,
+                    email: document.getElementById('userEmail').value,
+                    phone: document.getElementById('userPhone').value
+                };
+                
+                try {
+                    const response = await fetch('/admin/api/users', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        alert('User added successfully!');
+                        closeModal('addUserModal');
+                        this.reset();
+                        loadDashboardData();
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                } catch (error) {
+                    console.error('Error adding user:', error);
+                    alert('Error adding user. Please try again.');
+                }
+            });
+            
+            // Bulk User Upload Form
+            document.getElementById('bulkUserForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const namesFile = document.getElementById('namesFile');
+                const companiesFile = document.getElementById('companiesFile');
+                const industriesFile = document.getElementById('industriesFile');
+                
+                if (!namesFile.files[0] || !companiesFile.files[0] || !industriesFile.files[0]) {
+                    alert('Please select all three files (names, companies, industries).');
+                    return;
+                }
+                
+                const formData = new FormData();
+                formData.append('names_file', namesFile.files[0]);
+                formData.append('companies_file', companiesFile.files[0]);
+                formData.append('industries_file', industriesFile.files[0]);
+                
+                showUploadProgress();
+                
+                try {
+                    const response = await fetch('/admin/api/bulk-users-txt', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    const data = await response.json();
+                    hideUploadProgress();
+                    
+                    if (data.success) {
+                        showUploadResults(data);
+                        loadDashboardData();
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                } catch (error) {
+                    hideUploadProgress();
+                    console.error('Error uploading files:', error);
+                    alert('Error uploading files. Please try again.');
+                }
+            });
+            
+            // File input change handlers
+            document.getElementById('namesFile').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    showFileInfo(file, 'names');
+                } else {
+                    hideFileInfo('names');
+                }
+                checkAllFilesSelected();
+            });
+            
+            document.getElementById('companiesFile').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    showFileInfo(file, 'companies');
+                } else {
+                    hideFileInfo('companies');
+                }
+                checkAllFilesSelected();
+            });
+            
+            document.getElementById('industriesFile').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    showFileInfo(file, 'industries');
+                } else {
+                    hideFileInfo('industries');
+                }
+                checkAllFilesSelected();
+            });
+            
+            // Add Category Form
+            document.getElementById('addCategoryForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const categoryName = document.getElementById('newCategoryName').value.trim();
+                if (!categoryName) {
+                    alert('Please enter a category name.');
+                    return;
+                }
+                
+                try {
+                    const response = await fetch('/admin/api/add-category', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ name: categoryName })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        document.getElementById('newCategoryName').value = '';
+                        loadCategoriesTable();
+                        loadCategories(); // Refresh dropdown in add question form
+                    } else {
+                        alert('Error: ' + (data.message || 'Failed to add category'));
+                    }
+                } catch (error) {
+                    console.error('Error adding category:', error);
+                    alert('Error adding category. Please try again.');
+                }
+            });
+            
+            // Edit Category Form
+            document.getElementById('editCategoryForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const categoryId = document.getElementById('editCategoryId').value;
+                const categoryName = document.getElementById('editCategoryName').value.trim();
+                
+                if (!categoryName) {
+                    alert('Please enter a category name.');
+                    return;
+                }
+                
+                try {
+                    const response = await fetch(`/admin/api/categories/${categoryId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ name: categoryName })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        closeModal('editCategoryModal');
+                        loadCategoriesTable();
+                        loadCategories(); // Refresh dropdown in add question form
+                    } else {
+                        alert('Error: ' + (data.message || 'Failed to update category'));
+                    }
+                } catch (error) {
+                    console.error('Error updating category:', error);
+                    alert('Error updating category. Please try again.');
+                }
+            });
+        }
+        
+        async function loadCategoriesTable() {
+            try {
+                const response = await fetch('/admin/api/categories');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const tbody = document.getElementById('categoriesTableBody');
+                    tbody.innerHTML = '';
+                    
+                    data.categories.forEach(category => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${category.name}</td>
+                            <td>${category.question_count || 0}</td>
+                            <td>${new Date(category.created_at).toLocaleDateString()}</td>
+                            <td class="actions-cell">
+                                <button class="btn btn-sm btn-primary" onclick="editCategory(${category.id}, '${category.name}')">Edit</button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteCategory(${category.id}, '${category.name}')">Delete</button>
+                            </td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading categories:', error);
+            }
+        }
+        
+        function editCategory(id, name) {
+            document.getElementById('editCategoryId').value = id;
+            document.getElementById('editCategoryName').value = name;
+            openModal('editCategoryModal');
+        }
+        
+        async function deleteCategory(id, name) {
+            if (!confirm(`Are you sure you want to delete the category "${name}"?\n\nThis action cannot be undone.`)) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/admin/api/categories/${id}`, {
+                    method: 'DELETE'
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    loadCategoriesTable();
+                    loadCategories(); // Refresh dropdown in add question form
+                } else {
+                    alert('Error: ' + (data.message || 'Failed to delete category'));
+                }
+            } catch (error) {
+                console.error('Error deleting category:', error);
+                alert('Error deleting category. Please try again.');
+            }
+        }
+        
+        function showFileInfo(file, type) {
+            document.getElementById(type + 'FileInfo').style.display = 'flex';
+            document.getElementById(type + 'FileName').textContent = file.name;
+        }
+        
+        function hideFileInfo(type) {
+            document.getElementById(type + 'FileInfo').style.display = 'none';
+        }
+        
+        function clearFile(type) {
+            document.getElementById(type + 'File').value = '';
+            hideFileInfo(type);
+            checkAllFilesSelected();
+            hideUploadResults();
+        }
+        
+        function checkAllFilesSelected() {
+            const namesFile = document.getElementById('namesFile').files[0];
+            const companiesFile = document.getElementById('companiesFile').files[0];
+            const industriesFile = document.getElementById('industriesFile').files[0];
+            
+            const allSelected = namesFile && companiesFile && industriesFile;
+            document.getElementById('uploadBtn').disabled = !allSelected;
+        }
+        
+        function showUploadProgress() {
+            document.getElementById('uploadProgress').style.display = 'block';
+            document.getElementById('uploadBtn').disabled = true;
+        }
+        
+        function hideUploadProgress() {
+            document.getElementById('uploadProgress').style.display = 'none';
+            document.getElementById('uploadBtn').disabled = false;
+        }
+        
+        function showUploadResults(data) {
+            const resultsDiv = document.getElementById('uploadResults');
+            const summaryDiv = document.getElementById('resultsSummary');
+            const errorsDiv = document.getElementById('resultsErrors');
+            const errorsList = document.getElementById('errorsList');
+            
+            let filesInfo = '';
+            if (data.saved_files) {
+                filesInfo = `
+                    <div class="files-saved-info">
+                        <h4><i class="fas fa-folder"></i> Files Saved:</h4>
+                        <ul class="saved-files-list">
+                            <li><strong>Names:</strong> ${data.saved_files.names_file}</li>
+                            <li><strong>Companies:</strong> ${data.saved_files.companies_file}</li>
+                            <li><strong>Industries:</strong> ${data.saved_files.industries_file}</li>
+                        </ul>
+                        <p class="file-note">You can now edit these files directly in the bulk_uploads folder.</p>
+                    </div>
+                `;
+            }
+            
+            summaryDiv.innerHTML = `
+                <div class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    Successfully added ${data.users_added} users
+                </div>
+                ${filesInfo}
+            `;
+            
+            if (data.errors && data.errors.length > 0) {
+                errorsList.innerHTML = '';
+                data.errors.forEach(error => {
+                    const li = document.createElement('li');
+                    li.textContent = error;
+                    errorsList.appendChild(li);
+                });
+                errorsDiv.style.display = 'block';
+            } else {
+                errorsDiv.style.display = 'none';
+            }
+            
+            resultsDiv.style.display = 'block';
+        }
+        
+        function hideUploadResults() {
+            document.getElementById('uploadResults').style.display = 'none';
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+            if (modalId === 'bulkUserModal') {
+                clearFile('names');
+                clearFile('companies');
+                clearFile('industries');
+                hideUploadResults();
+            } else if (modalId === 'categoryManagementModal') {
+                loadCategoriesTable();
+            } else if (modalId === 'bulkQuestionImportModal') {
+                clearQuestionFile();
+                hideQuestionUploadResults();
+            }
+        }
+
+        function openBulkQuestionImportModal() {
+            openModal('bulkQuestionImportModal');
+        }
+
+        function closeBulkQuestionImportModal() {
+            closeModal('bulkQuestionImportModal');
+        }
+
+        function clearQuestionFile() {
+            document.getElementById('questionFile').value = '';
+            document.getElementById('questionFileInfo').style.display = 'none';
+            document.getElementById('questionUploadPlaceholder').style.display = 'block';
+        }
+
+        function hideQuestionUploadResults() {
+            document.getElementById('questionUploadResults').style.display = 'none';
+        }
+
+        function showQuestionUploadResults(data) {
+            const resultsDiv = document.getElementById('questionUploadResults');
+            const successDiv = document.getElementById('questionUploadSuccess');
+            const errorsDiv = document.getElementById('questionUploadErrors');
+            const successMessage = document.getElementById('questionSuccessMessage');
+            const errorsList = document.getElementById('questionErrorsList');
+            
+            // Clear previous results
+            successDiv.style.display = 'none';
+            errorsDiv.style.display = 'none';
+            errorsList.innerHTML = '';
+            
+            if (data.success) {
+                successMessage.textContent = data.message || `Successfully imported ${data.imported_count || 0} questions.`;
+                successDiv.style.display = 'block';
+            }
+            
+            if (data.errors && data.errors.length > 0) {
+                data.errors.forEach(error => {
+                    const li = document.createElement('li');
+                    li.textContent = error;
+                    errorsList.appendChild(li);
+                });
+                errorsDiv.style.display = 'block';
+            } else {
+                errorsDiv.style.display = 'none';
+            }
+            
+            resultsDiv.style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        async function exportData() {
+            try {
+                const response = await fetch('/admin/api/export-data');
+                const blob = await response.blob();
+                
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `game-data-${new Date().toISOString().split('T')[0]}.xlsx`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            } catch (error) {
+                console.error('Error exporting data:', error);
+                alert('Error exporting data. Please try again.');
+            }
+        }
+
+        function viewReports() {
+            window.open('/admin/reports', '_blank');
+        }
+
+        function refreshActivity() {
+            loadRecentActivity();
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '/admin/logout';
+            }
+        }
+
+        async function resetSession() {
+            if (confirm('Are you sure you want to reset all game sessions? This will clear all session data but keep user information, questions, and other data intact.')) {
+                try {
+                    const response = await fetch('/admin/api/reset-sessions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        alert('Sessions reset successfully!');
+                        location.reload();
+                    } else {
+                        alert('Error resetting sessions: ' + (data.message || 'Unknown error'));
+                    }
+                } catch (error) {
+                    console.error('Error resetting sessions:', error);
+                    alert('Error resetting sessions. Please try again.');
+                }
+            }
+        }
+
+        async function downloadExcelReport() {
+            try {
+                const response = await fetch('/admin/api/excel-report');
+                
+                if (!response.ok) {
+                    throw new Error('Failed to generate report');
+                }
+                
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `complete-game-report-${new Date().toISOString().split('T')[0]}.xlsx`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            } catch (error) {
+                console.error('Error downloading Excel report:', error);
+                alert('Error downloading report. Please try again.');
+            }
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+            }
+        });
+
+        // Bulk Question Import Event Handlers
+        document.getElementById('questionFileUploadArea').addEventListener('click', function() {
+            document.getElementById('questionFile').click();
+        });
+
+        document.getElementById('questionFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                document.getElementById('questionFileName').textContent = file.name;
+                document.getElementById('questionFileInfo').style.display = 'flex';
+                document.getElementById('questionUploadPlaceholder').style.display = 'none';
+            }
+        });
+
+        document.getElementById('bulkQuestionImportForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const fileInput = document.getElementById('questionFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert('Please select a file to upload.');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            const progressDiv = document.getElementById('questionUploadProgress');
+            const progressFill = document.getElementById('questionProgressFill');
+            const progressText = document.getElementById('questionProgressText');
+            const importBtn = document.getElementById('importQuestionsBtn');
+            
+            try {
+                // Show progress
+                progressDiv.style.display = 'block';
+                importBtn.disabled = true;
+                progressText.textContent = 'Uploading and processing questions...';
+                
+                // Simulate progress
+                let progress = 0;
+                const progressInterval = setInterval(() => {
+                    progress += 10;
+                    progressFill.style.width = progress + '%';
+                    if (progress >= 90) {
+                        clearInterval(progressInterval);
+                    }
+                }, 200);
+                
+                const response = await fetch('/admin/api/questions/bulk-import-txt', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                // Complete progress
+                clearInterval(progressInterval);
+                progressFill.style.width = '100%';
+                progressText.textContent = 'Processing complete!';
+                
+                setTimeout(() => {
+                    progressDiv.style.display = 'none';
+                    progressFill.style.width = '0%';
+                    importBtn.disabled = false;
+                }, 1000);
+                
+                showQuestionUploadResults(data);
+                
+                if (data.success) {
+                    // Refresh dashboard data
+                    loadDashboardData();
+                    // Clear the form
+                    clearQuestionFile();
+                }
+                
+            } catch (error) {
+                console.error('Error uploading questions:', error);
+                progressDiv.style.display = 'none';
+                importBtn.disabled = false;
+                alert('Error uploading questions. Please try again.');
+            }
+        });
+
+        // Auto-refresh dashboard every 5 minutes
+        setInterval(loadDashboardData, 5 * 60 * 1000);
+    </script>
+</body>
+</html>

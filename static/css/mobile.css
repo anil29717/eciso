@@ -1,0 +1,673 @@
+/* Mobile-specific optimizations for modern mobile devices */
+
+/* Viewport and base settings */
+@viewport {
+    width: device-width;
+    zoom: 1.0;
+}
+
+/* Enhanced mobile responsiveness */
+@media screen and (max-width: 1200px) {
+    body {
+        font-size: 18px;
+        line-height: 1.6;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        padding: 10px;
+        overflow-x: hidden;
+    }
+    
+    /* Prevent horizontal scrolling */
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    .container {
+        padding: 20px 15px;
+        max-width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .btn {
+        min-height: 60px;
+        font-size: 18px;
+        padding: 18px 35px;
+        margin: 12px 0;
+        border-radius: 12px;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        width: 100%;
+        max-width: 300px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        cursor: pointer;
+        border: none;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    
+    .btn:active {
+        transform: scale(0.98);
+    }
+    
+    /* Form elements */
+    input, select, textarea {
+        min-height: 55px;
+        font-size: 16px;
+        padding: 15px 18px;
+        border-radius: 10px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 100%;
+        border: 2px solid #e9ecef;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+        outline: none;
+    }
+    
+    /* Cards and containers */
+    .card {
+        margin-bottom: 15px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .industry-card {
+        min-height: 80px;
+        margin-bottom: 12px;
+        border-radius: 10px;
+    }
+    
+    /* Question screen optimizations */
+    .question-container {
+        padding: 20px 15px;
+    }
+    
+    .answer-option {
+        min-height: 70px;
+        margin-bottom: 12px;
+        padding: 15px 20px;
+        border-radius: 10px;
+        font-size: 16px;
+    }
+    
+    /* Timer display */
+    .timer {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    
+    /* Camera controls */
+    .camera-controls {
+        padding: 25px 20px;
+        gap: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .camera-btn {
+        min-width: 140px;
+        min-height: 60px;
+        font-size: 16px;
+        border-radius: 30px;
+        font-weight: 600;
+    }
+    
+    /* Selfie capture specific */
+    .capture-button {
+        width: 80px !important;
+        height: 80px !important;
+        border-radius: 50% !important;
+        font-size: 2rem !important;
+        margin: 20px auto !important;
+        display: block !important;
+        box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4) !important;
+    }
+    
+    .camera-container {
+        height: 280px !important;
+        margin: 25px 0 !important;
+        border-radius: 20px !important;
+        border: 3px dashed #dee2e6 !important;
+    }
+    
+    .camera-video, .preview-image {
+        border-radius: 17px !important;
+    }
+    
+    /* Navigation mobile optimizations */
+    .navigation {
+        flex-direction: column;
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    .nav-btn {
+        width: 100%;
+        padding: 18px 25px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 12px;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    /* Welcome screen mobile optimizations */
+    .welcome-title {
+        font-size: 2.5rem !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .event-title {
+        font-size: 1.8rem !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .company-name {
+        font-size: 2.2rem !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .description {
+        font-size: 1.2rem !important;
+        margin-bottom: 40px !important;
+        padding: 0 15px !important;
+    }
+    
+    .start-button {
+        padding: 20px 50px !important;
+        font-size: 1.4rem !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+    
+    /* Admin panel mobile optimizations */
+    .admin-container {
+        padding: 15px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+    
+    .stat-card {
+        padding: 20px 15px;
+        border-radius: 10px;
+    }
+    
+    .quick-actions {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+    
+    .action-btn {
+        min-height: 60px;
+        padding: 15px 10px;
+        font-size: 14px;
+    }
+    
+    /* Modal optimizations */
+    .modal-content {
+        margin: 20px;
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+        border-radius: 12px;
+    }
+    
+    .modal-header {
+        padding: 20px 20px 10px;
+    }
+    
+    .modal-body {
+        padding: 10px 20px 20px;
+    }
+    
+    /* Table responsiveness */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    table {
+        font-size: 14px;
+    }
+    
+    th, td {
+        padding: 8px 6px;
+        white-space: nowrap;
+    }
+}
+
+/* Touch-specific optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .btn:hover {
+        transform: none;
+    }
+    
+    .btn:active {
+        transform: scale(0.95);
+        transition: transform 0.1s ease;
+    }
+    
+    .industry-card:hover {
+        transform: none;
+    }
+    
+    .industry-card:active {
+        transform: scale(0.98);
+    }
+    
+    .answer-option:hover {
+        transform: none;
+    }
+    
+    .answer-option:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Small mobile devices (phones in portrait) */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 15px 10px;
+        margin: 5px;
+    }
+    
+    .title, .welcome-title {
+        font-size: 2rem !important;
+    }
+    
+    .subtitle, .description {
+        font-size: 1rem !important;
+        padding: 0 10px !important;
+    }
+    
+    .btn, .nav-btn {
+        padding: 16px 20px;
+        font-size: 16px;
+        min-height: 55px;
+    }
+    
+    .camera-container {
+        height: 250px !important;
+        margin: 20px 0 !important;
+    }
+    
+    .capture-button {
+        width: 70px !important;
+        height: 70px !important;
+        font-size: 1.8rem !important;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    .container {
+        padding: 10px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .btn {
+        min-height: 45px;
+        padding: 10px 20px;
+        margin: 6px 0;
+        font-size: 14px;
+    }
+    
+    .industry-card {
+        min-height: 50px;
+        margin-bottom: 6px;
+    }
+    
+    .answer-option {
+        min-height: 45px;
+        margin-bottom: 6px;
+        padding: 10px 12px;
+    }
+    
+    .timer {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+    
+    .camera-container {
+        height: 200px !important;
+        margin: 15px 0 !important;
+    }
+    
+    .capture-button {
+        width: 60px !important;
+        height: 60px !important;
+        font-size: 1.5rem !important;
+    }
+    
+    .navigation {
+        flex-direction: row;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .nav-btn {
+        flex: 1;
+        min-width: 120px;
+        padding: 12px 15px;
+        font-size: 14px;
+        min-height: 45px;
+    }
+}
+
+/* Loading and message overlays */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+}
+
+.loading-content {
+    text-align: center;
+    color: white;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #dc3545;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+.error-message, .success-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    z-index: 9998;
+    animation: slideInDown 0.3s ease;
+    max-width: 90%;
+    text-align: center;
+}
+
+.error-message {
+    background: #dc3545;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.success-message {
+    background: #28a745;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.inactivity-warning {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+}
+
+.warning-content {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 90%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.warning-content h3 {
+    color: #dc3545;
+    margin-bottom: 15px;
+}
+
+.warning-content p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* Ripple effect */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Enhanced animations */
+@keyframes slideInDown {
+    from {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .btn {
+        border: 2px solid currentColor;
+    }
+    
+    .card {
+        border: 1px solid #666;
+    }
+    
+    .industry-card {
+        border: 2px solid #333;
+    }
+}
+
+/* Focus improvements for keyboard navigation */
+.btn:focus,
+input:focus,
+select:focus,
+textarea:focus,
+.industry-card:focus,
+.answer-option:focus {
+    outline: 3px solid #dc3545;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .btn,
+    .camera-controls,
+    .timer,
+    .floating-circles {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+}
+
+/* Additional mobile performance optimizations */
+@media screen and (max-width: 1200px) {
+    /* Smooth scrolling for mobile */
+    html {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Optimize images for mobile */
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+    
+    /* Better text rendering on mobile */
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+    }
+    
+    /* Prevent zoom on input focus (iOS) */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+    
+    /* Enhanced button states for mobile */
+    .btn:active,
+    .nav-btn:active,
+    .camera-btn:active {
+        transform: scale(0.96);
+        transition: transform 0.1s ease;
+    }
+    
+    /* Better spacing for mobile content */
+    .header {
+        margin-bottom: 25px;
+    }
+    
+    .status-message {
+        margin: 15px 0;
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    /* Mobile-friendly modal adjustments */
+    .modal-content {
+        margin: 10px;
+        max-height: calc(100vh - 20px);
+        border-radius: 15px;
+    }
+    
+    /* Improved touch targets */
+    .control-btn {
+        min-height: 50px;
+        padding: 12px 20px;
+        margin: 8px 5px;
+        border-radius: 25px;
+    }
+    
+    /* Better visibility for status messages */
+    .error-message,
+    .success-message {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        transform: none;
+        max-width: none;
+        border-radius: 10px;
+        font-size: 14px;
+        padding: 12px 15px;
+    }
+}
+
+/* Ultra-wide mobile screens */
+@media screen and (min-width: 480px) and (max-width: 1200px) {
+    .container {
+        max-width: 600px;
+        padding: 30px 20px;
+    }
+    
+    .camera-container {
+        height: 320px !important;
+        max-width: 400px;
+        margin: 30px auto !important;
+    }
+    
+    .capture-button {
+        width: 90px !important;
+        height: 90px !important;
+        font-size: 2.2rem !important;
+    }
+    
+    .navigation {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}

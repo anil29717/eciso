@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Cache Digitech - ET CISO 2025 Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Glacial+Indifference:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Glacial Indifference', Arial, sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+
+        .content-overlay {
+            position: relative;
+            z-index: 1;
+            background: transparent;
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+
+
+        .top-left-logo {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 240px;
+            height: auto;
+            z-index: 10;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        /* Mobile Portrait Optimization - Enhanced */
+        @media screen and (max-width: 1200px) {
+            body {
+                padding: 15px;
+                overflow-x: hidden;
+            }
+            
+            .container {
+                padding: 30px 20px;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .top-left-logo {
+                width: 160px;
+                top: 15px;
+                left: 15px;
+            }
+            
+            .et-ciso-logo {
+                width: 375px;
+                margin: 0 auto 0 auto;
+            }
+        }
+
+        /* Logo removed */
+
+        .logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .et-ciso-logo {
+            width: 450px;
+            height: auto;
+            margin: 0 auto 15px auto;
+            display: block;
+            animation: fadeInDown 1s ease-out;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)) contrast(1.2) brightness(1.1) saturate(1.1);
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .welcome-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #dc3545;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: pulse 2s infinite;
+        }
+
+        .event-title {
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .company-name {
+            font-size: 2.8rem;
+            color: #dc3545;
+            font-weight: bold;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: pulse 2s infinite;
+        }
+
+        .description {
+            font-size: 1.4rem;
+            color: #000000;
+            margin-bottom: 50px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .start-button {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+            color: white;
+            border: none;
+            padding: 20px 60px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .start-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(220, 53, 69, 0.4);
+            background: linear-gradient(45deg, #c82333, #a71e2a);
+        }
+
+        .start-button:active {
+            transform: translateY(-1px);
+        }
+
+        .start-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .start-button:hover::before {
+            left: 100%;
+        }
+
+        /* Floating elements removed for cleaner background */
+
+        .footer-text {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #999;
+            font-size: 1rem;
+            animation: fadeIn 2s ease-out 1s both;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Float animation removed */
+
+        /* Mobile Responsive */
+        @media screen and (max-width: 768px) {
+            /* Logo styles removed */
+
+            .welcome-title {
+                font-size: 2.5rem;
+            }
+
+            .event-title {
+                font-size: 1.8rem;
+            }
+
+            .company-name {
+                font-size: 2rem;
+            }
+
+            .description {
+                font-size: 1.2rem;
+                margin-bottom: 40px;
+            }
+
+            .start-button {
+                padding: 18px 50px;
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .welcome-title {
+                font-size: 2rem;
+            }
+
+            .event-title {
+                font-size: 1.5rem;
+            }
+
+            .company-name {
+                font-size: 1.8rem;
+            }
+
+            .description {
+                font-size: 1.1rem;
+            }
+
+            .start-button {
+                padding: 15px 40px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Video -->
+    <video class="video-background" autoplay muted loop>
+        <source src="https://img.etb2bimg.com/files/cp/upload-1749543623-ciso-annual-1-approved-1.mp4" type="video/mp4">
+    </video>
+
+    <!-- Top Left Logo -->
+    <img src="{{ url_for('static', filename='logo/logo.png') }}" alt="Cache Logo" class="top-left-logo">
+
+    <div class="container content-overlay">
+        <img src="{{ url_for('static', filename='logo/ET-CISO-logo.png') }}" alt="ET CISO Logo" class="et-ciso-logo">
+        <h1 class="welcome-title">Welcome to</h1>
+        <h2 class="company-name">CACHE DIGITECH</h2>
+        <p class="description">
+            Test your cybersecurity knowledge and win exciting prizes! 
+            Answer questions, capture your moment, and discover how Cache Digitech 
+            can serve your industry with precision and expertise.
+        </p>
+        <button class="start-button" onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Footer text removed -->
+
+    <script>
+        function startGame() {
+            // Add button click animation
+            const button = document.querySelector('.start-button');
+            button.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+                // Navigate to user info screen
+                window.location.href = '/user-info';
+            }, 150);
+        }
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+
+            
+            // Floating circles removed for cleaner background
+
+            // Auto-reset timer (30 seconds of inactivity)
+            let inactivityTimer;
+            
+            function resetInactivityTimer() {
+                clearTimeout(inactivityTimer);
+                inactivityTimer = setTimeout(() => {
+                    // Auto-refresh to welcome screen after 30 seconds of inactivity
+                    window.location.reload();
+                }, 30000);
+            }
+
+            // Reset timer on any user interaction
+            ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(event => {
+                document.addEventListener(event, resetInactivityTimer, true);
+            });
+
+            resetInactivityTimer();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+INDUSTRY: Technology
+
+1. What does CPU stand for?
+A. Central Processing Unit
+B. Computer Personal Unit
+C. Central Personal Unit
+D. Computer Processing Unit
+Correct Answer: A
+
+2. Which programming language is known as the "language of the web"?
+A. Python
+B. JavaScript
+C. Java
+D. C++
+Correct Answer: B
+
+3. What does HTML stand for?
+A. Hypertext Markup Language
+B. High Tech Modern Language
+C. Home Tool Markup Language
+D. Hypertext Modern Language
+Correct Answer: A
+
+4. Which company developed the Android operating system?
+A. Apple
+B. Microsoft
+C. Google
+D. Samsung
+Correct Answer: C
+
+5. What is the main purpose of a firewall?
+A. To speed up internet connection
+B. To protect against unauthorized access
+C. To store data
+D. To run applications
+Correct Answer: B
+
+6. What does AI stand for?
+A. Automated Intelligence
+B. Artificial Intelligence
+C. Advanced Intelligence
+D. Applied Intelligence
+Correct Answer: B
+
+7. Which protocol is used for secure web browsing?
+A. HTTP
+B. FTP
+C. HTTPS
+D. SMTP
+Correct Answer: C
+
+8. What is cloud computing?
+A. Computing in the sky
+B. Weather prediction computing
+C. Computing services delivered over the internet
+D. Computing with clouds
+Correct Answer: C
+
+9. What does SQL stand for?
+A. Structured Query Language
+B. Simple Query Language
+C. Standard Query Language
+D. System Query Language
+Correct Answer: A
+
+10. Which technology is used for wireless communication over short distances?
+A. WiFi
+B. Bluetooth
+C. 4G
+D. Ethernet
+Correct Answer: B
+
+INDUSTRY: Healthcare
+
+1. What is the normal human body temperature in Celsius?
+A. 35°C
+B. 37°C
+C. 39°C
+D. 40°C
+Correct Answer: B
+
+2. Which organ is responsible for filtering blood?
+A. Heart
+B. Liver
+C. Kidneys
+D. Lungs
+Correct Answer: C
+
+3. What does MRI stand for?
+A. Medical Resonance Imaging
+B. Magnetic Resonance Imaging
+C. Modern Resonance Imaging
+D. Multiple Resonance Imaging
+Correct Answer: B
+
+4. How many chambers does a human heart have?
+A. 2
+B. 3
+C. 4
+D. 5
+Correct Answer: C
+
+5. What is the largest organ in the human body?
+A. Liver
+B. Brain
+C. Lungs
+D. Skin
+Correct Answer: D
+
+6. Which vitamin is produced when skin is exposed to sunlight?
+A. Vitamin A
+B. Vitamin C
+C. Vitamin D
+D. Vitamin E
+Correct Answer: C
+
+7. What is the medical term for high blood pressure?
+A. Hypotension
+B. Hypertension
+C. Hyperglycemia
+D. Hypoglycemia
+Correct Answer: B
+
+8. Which blood type is known as the universal donor?
+A. A+
+B. B+
+C. AB+
+D. O-
+Correct Answer: D
+
+9. What does CPR stand for?
+A. Cardiac Pulmonary Resuscitation
+B. Cardiopulmonary Resuscitation
+C. Cardiac Pressure Resuscitation
+D. Cardiopulmonary Recovery
+Correct Answer: B
+
+10. Which part of the brain controls balance and coordination?
+A. Cerebrum
+B. Cerebellum
+C. Brain stem
+D. Medulla
+Correct Answer: B
+
+INDUSTRY: Finance
+
+1. What does GDP stand for?
+A. Gross Domestic Product
+B. General Domestic Product
+C. Global Domestic Product
+D. Gross Development Product
+Correct Answer: A
+
+2. What is inflation?
+A. Decrease in prices
+B. Increase in prices over time
+C. Stable prices
+D. Currency devaluation
+Correct Answer: B
+
+3. What does ROI stand for?
+A. Rate of Interest
+B. Return on Investment
+C. Risk of Investment
+D. Revenue of Investment
+Correct Answer: B
+
+4. Which is considered a liquid asset?
+A. Real estate
+B. Cash
+C. Equipment
+D. Inventory
+Correct Answer: B
+
+5. What is a stock dividend?
+A. Cash payment to shareholders
+B. Additional shares given to shareholders
+C. Interest on bonds
+D. Company profits
+Correct Answer: B
+
+6. What does IPO stand for?
+A. Initial Public Offering
+B. International Public Offering
+C. Internal Public Offering
+D. Individual Public Offering
+Correct Answer: A
+
+7. What is compound interest?
+A. Simple interest calculation
+B. Interest earned on principal only
+C. Interest earned on principal and accumulated interest
+D. Fixed interest rate
+Correct Answer: C
+
+8. What is a bear market?
+A. Rising stock prices
+B. Falling stock prices
+C. Stable stock prices
+D. Volatile stock prices
+Correct Answer: B
+
+9. What does P/E ratio measure?
+A. Price to Earnings ratio
+B. Profit to Expense ratio
+C. Price to Equity ratio
+D. Performance to Expectation ratio
+Correct Answer: A
+
+10. What is diversification in investing?
+A. Investing in one stock
+B. Spreading investments across different assets
+C. Investing only in bonds
+D. Keeping money in savings
+Correct Answer: B
+
+INDUSTRY: Construction
+
+1. What does the construction industry do?
+A. Grows plants
+B. Designs software
+C. Builds buildings, roads, and bridges
+D. Provides loans
+Correct Answer: C
+
+2. What is a person who designs buildings called?
+A. A Builder
+B. An Architect
+C. A Plumber
+D. An Electrician
+Correct Answer: B
+
+3. What is a 'construction site'?
+A. A website about building
+B. The location where construction is happening
+C. A sight for seeing
+D. A place to buy materials
+Correct Answer: B
+
+4. What is concrete made of?
+A. Sand and water only
+B. Cement, sand, gravel, and water
+C. Wood and metal
+D. Plastic and rubber
+Correct Answer: B
+
+5. What is the purpose of a foundation?
+A. To make buildings look nice
+B. To support the weight of a structure
+C. To provide electricity
+D. To store water
+Correct Answer: B
+
+6. What tool is used to measure angles in construction?
+A. Hammer
+B. Screwdriver
+C. Protractor
+D. Saw
+Correct Answer: C
+
+7. What does HVAC stand for?
+A. Heavy Vehicle Air Conditioning
+B. Heating, Ventilation, and Air Conditioning
+C. High Voltage Alternating Current
+D. Home Value Assessment Calculator
+Correct Answer: B
+
+8. What is rebar used for?
+A. Decorating buildings
+B. Reinforcing concrete
+C. Painting walls
+D. Installing windows
+Correct Answer: B
+
+9. What is the first step in any construction project?
+A. Laying foundation
+B. Planning and design
+C. Installing roof
+D. Painting
+Correct Answer: B
+
+10. What does PPE stand for in construction?
+A. Personal Protection Equipment
+B. Professional Project Evaluation
+C. Public Property Examination
+D. Planned Project Execution
+Correct Answer: A

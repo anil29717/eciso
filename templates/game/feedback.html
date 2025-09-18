@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Answer Feedback - Cache Digitech Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Glacial+Indifference:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Glacial Indifference', Arial, sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+
+
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            animation: fadeInUp 1.2s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #dc3545, #c82333);
+        }
+
+        .result-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: bounceIn 1s ease-out 0.5s both;
+        }
+
+        .result-icon.correct {
+            color: #28a745;
+        }
+
+        .result-icon.incorrect {
+            color: #dc3545;
+        }
+
+        .result-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            animation: slideInUp 1s ease-out 0.7s both;
+        }
+
+        .result-title.correct {
+            color: #28a745;
+        }
+
+        .result-title.incorrect {
+            color: #dc3545;
+        }
+
+        .result-message {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            animation: slideInUp 1s ease-out 0.9s both;
+        }
+
+        .question-review {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: left;
+            animation: slideInUp 1s ease-out 1.1s both;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            color: #212529;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .options-review {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-review {
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .option-letter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .option-review.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #28a745;
+        }
+
+        .option-review.correct .option-letter {
+            background: #28a745;
+            color: white;
+        }
+
+        .option-review.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #dc3545;
+        }
+
+        .option-review.incorrect .option-letter {
+            background: #dc3545;
+            color: white;
+        }
+
+        .option-review.neutral {
+            background: #e9ecef;
+            color: #495057;
+            border: 1px solid #dee2e6;
+        }
+
+        .option-review.neutral .option-letter {
+            background: #6c757d;
+            color: white;
+        }
+
+        .explanation {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+            animation: slideInUp 1s ease-out 1.3s both;
+        }
+
+        .explanation-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .explanation-text {
+            font-size: 1rem;
+            color: #424242;
+            line-height: 1.6;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            animation: slideInUp 1s ease-out 1.5s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #dc3545;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .continue-button {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 200px;
+            animation: slideInUp 1s ease-out 1.7s both;
+        }
+
+        .continue-button:hover {
+            background: linear-gradient(45deg, #c82333, #a71e2a);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #dc3545;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        .confetti:nth-child(odd) {
+            background: #28a745;
+            animation-delay: -0.5s;
+        }
+
+        .confetti:nth-child(even) {
+            background: #ffc107;
+            animation-delay: -1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Mobile Responsive */
+        @media screen and (max-width: 768px) {
+            .logo {
+                width: 120px;
+                top: 20px;
+                left: 20px;
+            }
+
+            .container {
+                padding: 30px 25px;
+                margin: 20px;
+            }
+
+            .result-icon {
+                font-size: 4rem;
+            }
+
+            .result-title {
+                font-size: 2rem;
+            }
+
+            .result-message {
+                font-size: 1.1rem;
+            }
+
+            .question-review {
+                padding: 20px;
+            }
+
+            .question-text {
+                font-size: 1.1rem;
+            }
+
+            .stats-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .continue-button {
+                width: 100%;
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 25px 20px;
+            }
+
+            .result-icon {
+                font-size: 3.5rem;
+            }
+
+            .result-title {
+                font-size: 1.8rem;
+            }
+
+            .question-text {
+                font-size: 1rem;
+            }
+
+            .option-review {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <img src="{{ url_for('static', filename='logo/logo.png') }}" alt="Cache Logo" class="logo">
+
+    <div class="container">
+        <div class="result-icon" id="resultIcon">🎯</div>
+        
+        <h1 class="result-title" id="resultTitle">Loading...</h1>
+        
+        <p class="result-message" id="resultMessage">Processing your answer...</p>
+        
+        <div class="question-review" id="questionReview">
+            <div class="question-text" id="reviewQuestionText">Loading question...</div>
+            <div class="options-review" id="optionsReview">
+                <!-- Options will be loaded dynamically -->
+            </div>
+        </div>
+        
+        <div class="explanation" id="explanationSection" style="display: none;">
+            <div class="explanation-title">
+                <span>💡</span>
+                <span>Did You Know?</span>
+            </div>
+            <div class="explanation-text" id="explanationText"></div>
+        </div>
+        
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-value" id="timeTaken">--</span>
+                <span class="stat-label">Seconds</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="accuracy">--</span>
+                <span class="stat-label">Result</span>
+            </div>
+        </div>
+        
+        <button class="continue-button" id="continueBtn" onclick="proceedToNext()">
+            Continue
+        </button>
+    </div>
+
+    <script>
+        let answerResult = null;
+        let autoAdvanceTimer = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFeedback();
+            startAutoAdvance();
+        });
+
+        function loadFeedback() {
+            try {
+                console.log('Loading feedback...');
+                const resultData = sessionStorage.getItem('answerResult');
+                console.log('Session data:', resultData);
+                
+                if (!resultData) {
+                    console.log('No session data found, using fallback');
+                    // Fallback data
+                    answerResult = {
+                        correct: false,
+                        selected_answer: null,
+                        correct_answer: 0,
+                        question: "Sample question",
+                        options: ["Option A", "Option B", "Option C", "Option D"],
+                        explanation: "Thank you for participating!"
+                    };
+                } else {
+                    console.log('Parsing session data...');
+                    answerResult = JSON.parse(resultData);
+                    console.log('Parsed result:', answerResult);
+                }
+                
+                displayFeedback(answerResult);
+                
+            } catch (error) {
+                console.error('Error loading feedback:', error);
+                showErrorFeedback();
+            }
+        }
+
+        function displayFeedback(result) {
+            console.log('Displaying feedback for result:', result);
+            
+            const resultIcon = document.getElementById('resultIcon');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultMessage = document.getElementById('resultMessage');
+            const reviewQuestionText = document.getElementById('reviewQuestionText');
+            const optionsReview = document.getElementById('optionsReview');
+            const explanationSection = document.getElementById('explanationSection');
+            const explanationText = document.getElementById('explanationText');
+            const timeTaken = document.getElementById('timeTaken');
+            const accuracy = document.getElementById('accuracy');
+
+            // Validate required elements
+            if (!resultIcon || !resultTitle || !resultMessage || !reviewQuestionText || !optionsReview || !timeTaken || !accuracy) {
+                console.error('Missing required DOM elements');
+                showErrorFeedback();
+                return;
+            }
+
+            // Set result display
+            if (result.correct) {
+                resultIcon.textContent = '🎉';
+                resultIcon.className = 'result-icon correct pulse';
+                resultTitle.textContent = 'Excellent!';
+                resultTitle.className = 'result-title correct';
+                resultMessage.textContent = 'You got it right! Great job on demonstrating your knowledge.';
+                accuracy.textContent = 'Correct';
+                accuracy.style.color = '#28a745';
+                
+                // Add confetti for correct answers
+                createConfetti();
+            } else {
+                resultIcon.textContent = '🤔';
+                resultIcon.className = 'result-icon incorrect';
+                resultTitle.textContent = 'Good Try!';
+                resultTitle.className = 'result-title incorrect';
+                resultMessage.textContent = 'Not quite right, but every attempt is a learning opportunity!';
+                accuracy.textContent = 'Incorrect';
+                accuracy.style.color = '#dc3545';
+            }
+
+            // Display question review
+            reviewQuestionText.textContent = result.question;
+            
+            // Display options with correct/incorrect indicators
+            optionsReview.innerHTML = '';
+            
+            // Validate options array
+            if (!result.options || !Array.isArray(result.options)) {
+                console.error('Invalid options data:', result.options);
+                optionsReview.innerHTML = '<div class="option-review neutral">No options available</div>';
+            } else {
+                result.options.forEach((option, index) => {
+                    const optionElement = document.createElement('div');
+                    const letter = String.fromCharCode(65 + index);
+                    
+                    let optionClass = 'option-review neutral';
+                    
+                    // Handle both numeric and letter-based correct answers
+                    let correctAnswerIndex = result.correct_answer;
+                    if (typeof correctAnswerIndex === 'string') {
+                        correctAnswerIndex = correctAnswerIndex.charCodeAt(0) - 65; // Convert A,B,C,D to 0,1,2,3
+                    }
+                    
+                    let selectedAnswerIndex = result.selected_answer;
+                    if (typeof selectedAnswerIndex === 'string') {
+                        selectedAnswerIndex = selectedAnswerIndex.charCodeAt(0) - 65; // Convert A,B,C,D to 0,1,2,3
+                    }
+                    
+                    if (index === correctAnswerIndex) {
+                        optionClass = 'option-review correct';
+                    } else if (index === selectedAnswerIndex && index !== correctAnswerIndex) {
+                        optionClass = 'option-review incorrect';
+                    }
+                    
+                    optionElement.className = optionClass;
+                    optionElement.innerHTML = `
+                        <span class="option-letter">${letter}</span>
+                        ${option}
+                    `;
+                    
+                    optionsReview.appendChild(optionElement);
+                });
+            }
+
+            // Show explanation if available
+            if (result.explanation && result.explanation.trim()) {
+                explanationText.textContent = result.explanation;
+                explanationSection.style.display = 'block';
+            }
+
+            // Set time taken (fallback to random if not available)
+            const timeValue = result.time_taken || Math.floor(Math.random() * 25) + 5;
+            timeTaken.textContent = timeValue;
+        }
+
+        function showErrorFeedback() {
+            console.log('Showing error feedback fallback');
+            document.getElementById('resultIcon').textContent = '⚠️';
+            document.getElementById('resultTitle').textContent = 'Thank You!';
+            document.getElementById('resultMessage').textContent = 'Thank you for participating in our interactive game!';
+            document.getElementById('reviewQuestionText').textContent = 'We appreciate your time and engagement.';
+            document.getElementById('optionsReview').innerHTML = '';
+            document.getElementById('timeTaken').textContent = '--';
+            document.getElementById('accuracy').textContent = 'Complete';
+            document.getElementById('accuracy').style.color = '#28a745';
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.animationDelay = Math.random() * 3 + 's';
+                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 100);
+            }
+        }
+
+        function startAutoAdvance() {
+            // Auto-advance after 10 seconds
+            autoAdvanceTimer = setTimeout(() => {
+                proceedToNext();
+            }, 10000);
+        }
+
+        function proceedToNext() {
+            clearTimeout(autoAdvanceTimer);
+            
+            // Clear session storage
+            sessionStorage.removeItem('answerResult');
+            
+            // Navigate to company info screen
+            window.location.href = '/company-info';
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                proceedToNext();
+            }
+        });
+
+        // Click anywhere to continue (mobile friendly)
+        let clickCount = 0;
+        document.addEventListener('click', function(e) {
+            // Ignore clicks on the continue button itself
+            if (e.target.id === 'continueBtn') return;
+            
+            clickCount++;
+            if (clickCount >= 2) { // Require double-click to prevent accidental advancement
+                proceedToNext();
+            }
+            
+            // Reset click count after 2 seconds
+            setTimeout(() => {
+                clickCount = 0;
+            }, 2000);
+        });
+
+
+
+        // Auto-reset functionality
+        let inactivityTimer;
+        
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(() => {
+                window.location.href = '/';
+            }, 30000);
+        }
+
+        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(event => {
+            document.addEventListener(event, resetInactivityTimer, true);
+        });
+
+        resetInactivityTimer();
+    </script>
+</body>
+</html>

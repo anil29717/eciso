@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Industry - Cache Digitech Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Glacial+Indifference:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Glacial Indifference', Arial, sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+
+
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-top: 120px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .title {
+            font-size: 2.8rem;
+            color: #dc3545;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .industries-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 180px);
+            grid-template-rows: repeat(2, 180px);
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .industry-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            width: 180px;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .industry-card.highlighted {
+            border-color: #dc3545;
+            background: linear-gradient(135deg, #fff 0%, #fff5f5 100%);
+        }
+
+        .industry-card.highlighted::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: 10px;
+            right: -25px;
+            background: #dc3545;
+            color: white;
+            padding: 5px 30px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: rotate(45deg);
+            letter-spacing: 1px;
+        }
+
+        .industry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(220, 53, 69, 0.15);
+            border-color: #dc3545;
+        }
+
+        .industry-card.selected {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            border-color: #dc3545;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(220, 53, 69, 0.3);
+        }
+
+        .industry-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .industry-name {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .industry-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        .industry-card.selected .industry-description {
+            opacity: 0.9;
+        }
+
+        .show-more-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .show-more-btn:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .additional-industries {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .additional-industries.show {
+            display: block;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 150px;
+        }
+
+        .btn-back {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-back:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(108, 117, 125, 0.3);
+        }
+
+        .btn-next {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .btn-next:hover {
+            background: linear-gradient(45deg, #c82333, #a71e2a);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .selection-indicator {
+            position: fixed;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border: 2px solid #dc3545;
+            display: none;
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        .selection-indicator.show {
+            display: block;
+        }
+
+        .selection-text {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .selected-industry {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #dc3545;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%) translateY(-50%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) translateY(-50%);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media screen and (max-width: 768px) {
+            .logo {
+                width: 120px;
+                top: 20px;
+                left: 20px;
+            }
+
+            .container {
+                padding-top: 100px;
+            }
+
+            .title {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .industries-grid {
+                grid-template-columns: repeat(2, 120px);
+                grid-template-rows: repeat(auto-fit, 120px);
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .industry-card {
+                padding: 20px;
+                width: 120px;
+                height: 120px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .selection-indicator {
+                position: static;
+                transform: none;
+                margin: 20px auto;
+                text-align: center;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .industries-grid {
+                grid-template-columns: repeat(2, 150px);
+                grid-template-rows: repeat(auto-fit, 150px);
+                gap: 5px;
+                justify-content: center;
+            }
+
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .industry-card {
+                padding: 15px;
+                width: 150px;
+                height: 150px;
+            }
+
+            .industry-icon {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <img src="{{ url_for('static', filename='logo/logo.png') }}" alt="Cache Logo" class="logo">
+
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Select Your Industry</h1>
+            <p class="subtitle">Scroll the industry that best represents your business focus</p>
+        </div>
+
+        <!-- Highlighted Industries -->
+        <div class="industries-section">
+            <h2 class="section-title">Popular Industries</h2>
+            <div class="industries-grid" id="highlightedIndustries">
+                {% for industry in highlighted_industries %}
+                <div class="industry-card highlighted" data-industry="{{ industry.name }}" onclick="selectIndustry('{{ industry.name }}', this)">
+                    <span class="industry-icon">🏢</span>
+                    <div class="industry-name">{{ industry.name }}</div>
+                    <!-- Description removed -->
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Show More Button -->
+        <button class="show-more-btn" id="showMoreBtn" onclick="toggleAdditionalIndustries()">Show More Industries</button>
+
+        <!-- Additional Industries -->
+        <div class="industries-section additional-industries" id="additionalIndustries">
+            <h2 class="section-title">Other Industries</h2>
+            <div class="industries-grid">
+                {% for industry in other_industries %}
+                <div class="industry-card" data-industry="{{ industry.name }}" onclick="selectIndustry('{{ industry.name }}', this)">
+                    <span class="industry-icon">🏭</span>
+                    <div class="industry-name">{{ industry.name }}</div>
+                    <!-- Description removed -->
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Selection Indicator -->
+        <div class="selection-indicator" id="selectionIndicator">
+            <div class="selection-text">Selected Industry:</div>
+            <div class="selected-industry" id="selectedIndustryText"></div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="button-group">
+            <button class="btn btn-back" onclick="goBack()">Back</button>
+        </div>
+    </div>
+
+    <script>
+        let selectedIndustry = null;
+        let selectedCard = null;
+
+        function selectIndustry(industryName, cardElement) {
+            // Remove previous selection
+            if (selectedCard) {
+                selectedCard.classList.remove('selected');
+            }
+
+            // Set new selection
+            selectedIndustry = industryName;
+            selectedCard = cardElement;
+            cardElement.classList.add('selected');
+
+            // Update UI
+            document.getElementById('selectedIndustryText').textContent = industryName;
+            document.getElementById('selectionIndicator').classList.add('show');
+
+            // Add selection animation
+            cardElement.style.animation = 'none';
+            cardElement.offsetHeight; // Trigger reflow
+            cardElement.style.animation = 'fadeInUp 0.3s ease-out';
+
+            // Automatically proceed to next screen after a short delay
+            setTimeout(() => {
+                proceedToSelfie();
+            }, 800);
+        }
+
+        function toggleAdditionalIndustries() {
+            const additionalSection = document.getElementById('additionalIndustries');
+            const showMoreBtn = document.getElementById('showMoreBtn');
+
+            if (additionalSection.classList.contains('show')) {
+                additionalSection.classList.remove('show');
+                showMoreBtn.textContent = 'Show More Industries';
+                
+                // Scroll back to highlighted industries
+                document.getElementById('highlightedIndustries').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            } else {
+                additionalSection.classList.add('show');
+                showMoreBtn.textContent = 'Show Less Industries';
+                
+                // Scroll to additional industries
+                setTimeout(() => {
+                    additionalSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            }
+        }
+
+        async function proceedToSelfie() {
+            if (!selectedIndustry) {
+                alert('Please select an industry to continue.');
+                return;
+            }
+
+            // Update session with selected industry
+            try {
+                const response = await fetch('/api/start-game', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        industry: selectedIndustry
+                    })
+                });
+
+                if (response.ok) {
+                    // Add transition effect
+                    document.body.style.opacity = '0';
+                    document.body.style.transition = 'opacity 0.3s ease-out';
+                    
+                    setTimeout(() => {
+                        window.location.href = '/selfie-capture';
+                    }, 300);
+                } else {
+                    throw new Error('Failed to update industry selection');
+                }
+            } catch (error) {
+                console.error('Error updating industry:', error);
+                // Continue anyway
+                window.location.href = '/selfie-capture';
+            }
+        }
+
+        function goBack() {
+            window.location.href = '/user-info';
+        }
+
+        // Add hover effects and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const industryCards = document.querySelectorAll('.industry-card');
+            
+            industryCards.forEach((card, index) => {
+                // Stagger animation on load
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.style.animation = 'fadeInUp 0.6s ease-out both';
+                
+                // Add ripple effect on click
+                card.addEventListener('click', function(e) {
+                    const ripple = document.createElement('div');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.3);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: ripple 0.6s linear;
+                        pointer-events: none;
+                    `;
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        });
+
+        // Add ripple animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Auto-reset functionality
+        let inactivityTimer;
+
+        
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(() => {
+                window.location.href = '/';
+            }, 30000);
+        }
+
+        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(event => {
+            document.addEventListener(event, resetInactivityTimer, true);
+        });
+
+        resetInactivityTimer();
+    </script>
+</body>
+</html>

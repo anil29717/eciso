@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" width="900" height="400">
+  <!-- Background -->
+  <rect width="900" height="400" fill="white"/>
+  
+  <!-- Main circular logo element -->
+  <g transform="translate(50, 50)">
+    <!-- Outer red circle -->
+    <circle cx="150" cy="150" r="140" fill="none" stroke="#dc3545" stroke-width="20"/>
+    
+    <!-- Inner red dot -->
+    <circle cx="80" cy="150" r="25" fill="#dc3545"/>
+    
+    <!-- CACHE text -->
+    <g transform="translate(320, 80)">
+      <!-- C -->
+      <path d="M0 0 Q-20 0 -20 40 Q-20 80 0 80 L20 80 L20 60 L0 60 Q0 40 0 20 L20 20 L20 0 Z" fill="#dc3545" transform="scale(2.5)"/>
+      
+      <!-- A -->
+      <path d="M40 0 L60 80 L80 80 L100 0 L80 0 L75 20 L65 20 L60 0 Z M67 35 L73 35 L70 50 Z" fill="#dc3545" transform="scale(2.5)"/>
+      
+      <!-- C -->
+      <circle cx="140" cy="40" r="35" fill="none" stroke="#dc3545" stroke-width="8" transform="scale(2.5)"/>
+      <path d="M120 25 L120 15 M120 65 L120 55" stroke="#dc3545" stroke-width="8" transform="scale(2.5)"/>
+      
+      <!-- H -->
+      <g transform="translate(180, 0) scale(2.5)">
+        <rect x="0" y="0" width="8" height="80" fill="#dc3545"/>
+        <rect x="32" y="0" width="8" height="80" fill="#dc3545"/>
+        <rect x="0" y="36" width="40" height="8" fill="#dc3545"/>
+      </g>
+      
+      <!-- E -->
+      <g transform="translate(280, 0) scale(2.5)">
+        <rect x="0" y="0" width="8" height="80" fill="#dc3545"/>
+        <rect x="0" y="0" width="35" height="8" fill="#dc3545"/>
+        <rect x="0" y="36" width="30" height="8" fill="#dc3545"/>
+        <rect x="0" y="72" width="35" height="8" fill="#dc3545"/>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Tagline -->
+  <text x="450" y="320" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="black" text-anchor="middle">Endeavouring Perfection</text>
+</svg>

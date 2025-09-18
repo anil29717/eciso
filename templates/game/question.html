@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question - Cache Digitech Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Glacial+Indifference:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Glacial Indifference', Arial, sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+
+
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            animation: fadeInUp 1.2s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #dc3545, #c82333);
+        }
+
+        .timer-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timer {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .timer.warning {
+            background: linear-gradient(45deg, #ffc107, #e0a800);
+            animation: fastPulse 0.5s infinite;
+        }
+
+        .timer.danger {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+            animation: fastPulse 0.3s infinite;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            border-radius: 4px;
+            transition: width 1s linear;
+            animation: shimmer 2s infinite;
+        }
+
+        .progress-fill.warning {
+            background: linear-gradient(90deg, #ffc107, #fd7e14);
+        }
+
+        .progress-fill.danger {
+            background: linear-gradient(90deg, #dc3545, #c82333);
+        }
+
+        .question-number {
+            font-size: 1.1rem;
+            color: #6c757d;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .question-text {
+            font-size: 1.8rem;
+            color: #212529;
+            font-weight: bold;
+            margin-bottom: 40px;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 53, 69, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .option:hover {
+            border-color: #dc3545;
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.15);
+        }
+
+        .option:hover::before {
+            left: 100%;
+        }
+
+        .option.selected {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            border-color: #dc3545;
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(220, 53, 69, 0.3);
+        }
+
+        .option.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .option-letter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: #dc3545;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .option.selected .option-letter {
+            background: white;
+            color: #dc3545;
+        }
+
+        .submit-container {
+            margin-top: 30px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 200px;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .btn-submit.enabled {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .btn-submit.enabled:hover {
+            background: linear-gradient(45deg, #c82333, #a71e2a);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #6c757d, #5a6268);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .timeout-warning {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(220, 53, 69, 0.95);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            z-index: 1000;
+            display: none;
+            animation: bounceIn 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes fastPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: 200px 0; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media screen and (max-width: 768px) {
+            .logo {
+                width: 120px;
+                top: 20px;
+                left: 20px;
+            }
+
+            .container {
+                padding: 30px 25px;
+                margin: 20px;
+            }
+
+            .timer-container {
+                position: static;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+
+            .question-text {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+
+            .option {
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+
+            .option-letter {
+                width: 25px;
+                height: 25px;
+                line-height: 25px;
+                font-size: 0.9rem;
+                margin-right: 10px;
+            }
+
+            .btn-submit {
+                width: 100%;
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 25px 20px;
+            }
+
+            .question-text {
+                font-size: 1.3rem;
+            }
+
+            .option {
+                padding: 12px;
+                font-size: 1rem;
+            }
+
+            .timer {
+                font-size: 1rem;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <img src="{{ url_for('static', filename='logo/logo.png') }}" alt="Cache Logo" class="logo">
+
+    <div class="container">
+        <div class="timer-container">
+            <div class="timer" id="timer">30</div>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        
+        <div class="category-badge" id="categoryBadge">Loading...</div>
+        
+        <div class="question-number" id="questionNumber">Question 1 of 1</div>
+        
+        <div class="question-text" id="questionText">Loading question...</div>
+        
+        <div class="options-container" id="optionsContainer">
+            <!-- Options will be loaded dynamically -->
+        </div>
+        
+        <div class="submit-container">
+            <button class="btn-submit" id="submitBtn" onclick="submitAnswer()">
+                <span class="loading-spinner" id="loadingSpinner"></span>
+                <span id="btnText">Submit Answer</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="timeout-warning" id="timeoutWarning">
+        Time's Up!
+    </div>
+
+    <script>
+        let timeLeft = 30;
+        let timerInterval;
+        let selectedOption = null;
+        let questionData = null;
+        let isSubmitting = false;
+
+        // Load question on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadQuestion();
+        });
+
+        async function loadQuestion() {
+            try {
+                const response = await fetch('/api/get-question');
+                if (!response.ok) {
+                    throw new Error('Failed to load question');
+                }
+                
+                questionData = await response.json();
+                displayQuestion(questionData);
+                startTimer();
+                
+            } catch (error) {
+                console.error('Error loading question:', error);
+                // Show error message instead of fallback
+                document.getElementById('questionContainer').innerHTML = `
+                    <div class="error-message">
+                        <h3>Unable to load question</h3>
+                        <p>Please refresh the page or contact support.</p>
+                        <button onclick="location.reload()" class="btn btn-primary">Refresh Page</button>
+                    </div>
+                `;
+            }
+        }
+
+        function displayQuestion(data) {
+            document.getElementById('categoryBadge').textContent = data.category || 'General';
+            document.getElementById('questionText').textContent = data.question;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            // Convert options object to array if needed
+            const optionsArray = Array.isArray(data.options) ? data.options : Object.values(data.options);
+            
+            optionsArray.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.onclick = () => selectOption(index);
+                
+                const letter = String.fromCharCode(65 + index); // A, B, C, D
+                optionElement.innerHTML = `
+                    <span class="option-letter">${letter}</span>
+                    ${option}
+                `;
+                
+                optionsContainer.appendChild(optionElement);
+            });
+        }
+
+        function selectOption(index) {
+            if (isSubmitting) return;
+            
+            // Remove previous selection
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Add selection to clicked option
+            const options = document.querySelectorAll('.option');
+            options[index].classList.add('selected');
+            
+            selectedOption = index;
+            
+            // Enable submit button
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.classList.add('enabled');
+        }
+
+        function startTimer() {
+            // Clear any existing timer
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+            
+            // Reset timer
+            timeLeft = 30;
+            
+            const timerElement = document.getElementById('timer');
+            const progressFill = document.getElementById('progressFill');
+            
+            // Set initial values
+            timerElement.textContent = timeLeft;
+            progressFill.style.width = '100%';
+            
+            // Reset classes
+            timerElement.classList.remove('danger', 'warning');
+            progressFill.classList.remove('danger', 'warning');
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+                
+                // Update progress bar
+                const progressPercentage = (timeLeft / 30) * 100;
+                progressFill.style.width = progressPercentage + '%';
+                
+                // Change colors based on time left
+                if (timeLeft <= 5) {
+                    timerElement.classList.add('danger');
+                    progressFill.classList.add('danger');
+                } else if (timeLeft <= 10) {
+                    timerElement.classList.add('warning');
+                    progressFill.classList.add('warning');
+                }
+                
+                // Time's up
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    handleTimeout();
+                }
+            }, 1000);
+        }
+
+        function handleTimeout() {
+            // Show timeout warning
+            const timeoutWarning = document.getElementById('timeoutWarning');
+            timeoutWarning.style.display = 'block';
+            
+            // Disable all options
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.add('disabled');
+            });
+            
+            // Auto-submit with no answer after 2 seconds
+            setTimeout(() => {
+                timeoutWarning.style.display = 'none';
+                submitAnswer(true);
+            }, 2000);
+        }
+
+        async function submitAnswer(isTimeout = false) {
+            if (isSubmitting) return;
+            isSubmitting = true;
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const btnText = document.getElementById('btnText');
+            
+            // Clear timer
+            clearInterval(timerInterval);
+            
+            // Show loading state
+            loadingSpinner.style.display = 'inline-block';
+            btnText.textContent = 'Submitting...';
+            submitBtn.classList.remove('enabled');
+            
+            // Disable all options
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.add('disabled');
+            });
+            
+            try {
+                const response = await fetch('/api/submit-answer', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        question_id: questionData.id,
+                        selected_answer: selectedOption,
+                        time_taken: 30 - timeLeft,
+                        is_timeout: isTimeout
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to submit answer');
+                }
+                
+                const result = await response.json();
+                
+                // Store result for feedback screen
+                const optionsArray = Array.isArray(questionData.options) ? questionData.options : Object.values(questionData.options);
+                sessionStorage.setItem('answerResult', JSON.stringify({
+                    correct: result.correct,
+                    selected_answer: selectedOption,
+                    correct_answer: questionData.correct_answer,
+                    question: questionData.question,
+                    options: optionsArray,
+                    explanation: result.explanation || '',
+                    time_taken: 30 - timeLeft
+                }));
+                
+                // Navigate to feedback screen
+                window.location.href = '/feedback';
+                
+            } catch (error) {
+                console.error('Error submitting answer:', error);
+                
+                // Fallback - continue to feedback with local data
+                sessionStorage.setItem('answerResult', JSON.stringify({
+                    correct: selectedOption === questionData.correct_answer,
+                    selected_answer: selectedOption,
+                    correct_answer: questionData.correct_answer,
+                    question: questionData.question,
+                    options: questionData.options,
+                    explanation: 'Thank you for participating!'
+                }));
+                
+                window.location.href = '/feedback';
+            }
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (isSubmitting) return;
+            
+            // A, B, C, D keys for option selection
+            if (e.key >= '1' && e.key <= '4') {
+                const index = parseInt(e.key) - 1;
+                if (index < questionData.options.length) {
+                    selectOption(index);
+                }
+            }
+            
+            // Enter key to submit
+            if (e.key === 'Enter' && selectedOption !== null) {
+                submitAnswer();
+            }
+        });
+
+        // Prevent page refresh/back during question
+        window.addEventListener('beforeunload', function(e) {
+            if (!isSubmitting && timeLeft > 0) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        // Auto-reset functionality (disabled during question)
+        let inactivityTimer;
+
+
+        
+        function resetInactivityTimer() {
+            // Don't reset during active question
+            if (timeLeft > 0 && !isSubmitting) {
+                return;
+            }
+            
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(() => {
+                window.location.href = '/';
+            }, 60000); // 1 minute after question completion
+        }
+
+        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(event => {
+            document.addEventListener(event, resetInactivityTimer, true);
+        });
+
+        resetInactivityTimer();
+    </script>
+</body>
+</html>

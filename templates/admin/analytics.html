@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Analytics - Admin Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: white;
+        }
+
+        .admin-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-title {
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .analytics-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(103, 126, 234, 0.1);
+            border-radius: 12px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .analytics-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .analytics-table th,
+        .analytics-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .analytics-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+            position: sticky;
+            top: 0;
+        }
+
+        .analytics-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .difficulty-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .difficulty-easy {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .difficulty-medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .difficulty-hard {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .refresh-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(103, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-overview {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .analytics-table {
+                font-size: 0.9rem;
+            }
+
+            .analytics-table th,
+            .analytics-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <svg width="120" height="48" viewBox="0 0 120 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="120" height="48" rx="8" fill="white" fill-opacity="0.2"/>
+                    <text x="60" y="30" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Cache Digitech</text>
+                </svg>
+                <div class="admin-title">Question Analytics</div>
+            </div>
+            <div class="header-actions">
+                <a href="/admin/dashboard" class="back-btn">
+                    ← Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">📊 Question Analytics & Performance</h1>
+
+        <button class="refresh-btn" onclick="loadAnalytics()">🔄 Refresh Data</button>
+
+        <!-- Overview Stats -->
+        <div class="stats-overview" id="statsOverview">
+            <div class="stat-item">
+                <div class="stat-number" id="totalQuestions">-</div>
+                <div class="stat-label">Total Questions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalCategories">-</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalAttempts">-</div>
+                <div class="stat-label">Total Attempts</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="avgSuccessRate">-</div>
+                <div class="stat-label">Avg Success Rate</div>
+            </div>
+        </div>
+
+        <div class="analytics-grid">
+            <!-- Question Performance -->
+            <div class="analytics-card">
+                <h2 class="card-title">❓ Question Performance</h2>
+                <div class="table-container">
+                    <table class="analytics-table">
+                        <thead>
+                            <tr>
+                                <th>Question</th>
+                                <th>Category</th>
+                                <th>Attempts</th>
+                                <th>Success Rate</th>
+                                <th>Difficulty</th>
+                            </tr>
+                        </thead>
+                        <tbody id="questionPerformanceTable">
+                            <tr>
+                                <td colspan="5" class="loading">Loading question data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category Performance -->
+            <div class="analytics-card">
+                <h2 class="card-title">📂 Category Performance</h2>
+                <div class="table-container">
+                    <table class="analytics-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Questions</th>
+                                <th>Total Attempts</th>
+                                <th>Avg Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categoryPerformanceTable">
+                            <tr>
+                                <td colspan="4" class="loading">Loading category data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Difficult Questions -->
+        <div class="analytics-card">
+            <h2 class="card-title">🔥 Most Challenging Questions</h2>
+            <div class="table-container">
+                <table class="analytics-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Category</th>
+                            <th>Attempts</th>
+                            <th>Success Rate</th>
+                            <th>Performance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="difficultQuestionsTable">
+                        <tr>
+                            <td colspan="5" class="loading">Loading difficult questions...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadAnalytics() {
+            try {
+                // Show loading states
+                document.getElementById('questionPerformanceTable').innerHTML = '<tr><td colspan="5" class="loading">Loading question data...</td></tr>';
+                document.getElementById('categoryPerformanceTable').innerHTML = '<tr><td colspan="4" class="loading">Loading category data...</td></tr>';
+                document.getElementById('difficultQuestionsTable').innerHTML = '<tr><td colspan="5" class="loading">Loading difficult questions...</td></tr>';
+
+                // Load dashboard stats and question analytics
+                const [dashboardResponse, analyticsResponse] = await Promise.all([
+                    fetch('/admin/api/dashboard-stats'),
+                    fetch('/admin/api/question-analytics')
+                ]);
+
+                const dashboardData = await dashboardResponse.json();
+                const analyticsData = await analyticsResponse.json();
+
+                if (dashboardData.success && analyticsData.success) {
+                    updateOverviewStats(dashboardData.stats, analyticsData);
+                    updateQuestionPerformance(analyticsData.question_performance);
+                    updateCategoryPerformance(analyticsData.category_performance);
+                    updateDifficultQuestions(dashboardData.stats.difficult_questions);
+                } else {
+                    showError('Failed to load analytics data');
+                }
+            } catch (error) {
+                console.error('Error loading analytics:', error);
+                showError('Error loading analytics data');
+            }
+        }
+
+        function updateOverviewStats(dashboardStats, analyticsData) {
+            document.getElementById('totalQuestions').textContent = dashboardStats.total_questions || 0;
+            document.getElementById('totalCategories').textContent = dashboardStats.total_categories || 0;
+            
+            // Calculate total attempts from question performance
+            const totalAttempts = analyticsData.question_performance.reduce((sum, q) => sum + q.total_attempts, 0);
+            document.getElementById('totalAttempts').textContent = totalAttempts;
+            
+            // Calculate average success rate
+            const avgSuccessRate = analyticsData.question_performance.length > 0 
+                ? analyticsData.question_performance.reduce((sum, q) => sum + q.success_rate, 0) / analyticsData.question_performance.length
+                : 0;
+            document.getElementById('avgSuccessRate').textContent = Math.round(avgSuccessRate) + '%';
+        }
+
+        function updateQuestionPerformance(questions) {
+            const tbody = document.getElementById('questionPerformanceTable');
+            
+            if (questions.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="loading">No question data available</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = questions.map(q => `
+                <tr>
+                    <td title="${q.question}">${q.question}</td>
+                    <td>${q.category}</td>
+                    <td>${q.total_attempts}</td>
+                    <td>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${q.success_rate}%"></div>
+                        </div>
+                        ${q.success_rate}%
+                    </td>
+                    <td>
+                        <span class="difficulty-badge difficulty-${q.difficulty_level.toLowerCase()}">
+                            ${q.difficulty_level}
+                        </span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function updateCategoryPerformance(categories) {
+            const tbody = document.getElementById('categoryPerformanceTable');
+            
+            if (categories.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="loading">No category data available</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = categories.map(c => `
+                <tr>
+                    <td>${c.name}</td>
+                    <td>${c.total_questions}</td>
+                    <td>${c.total_attempts}</td>
+                    <td>${c.avg_score}%</td>
+                </tr>
+            `).join('');
+        }
+
+        function updateDifficultQuestions(difficultQuestions) {
+            const tbody = document.getElementById('difficultQuestionsTable');
+            
+            if (!difficultQuestions || difficultQuestions.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="loading">No difficult questions data available</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = difficultQuestions.map(q => `
+                <tr>
+                    <td title="${q.question}">${q.question}</td>
+                    <td>${q.category}</td>
+                    <td>${q.attempts}</td>
+                    <td>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${q.success_rate}%"></div>
+                        </div>
+                        ${q.success_rate}%
+                    </td>
+                    <td>
+                        <span class="difficulty-badge difficulty-hard">
+                            Challenging
+                        </span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error';
+            errorDiv.textContent = message;
+            document.querySelector('.container').insertBefore(errorDiv, document.querySelector('.stats-overview'));
+        }
+
+        // Load analytics on page load
+        document.addEventListener('DOMContentLoaded', loadAnalytics);
+    </script>
+</body>
+</html>

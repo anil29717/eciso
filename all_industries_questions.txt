@@ -1,0 +1,1582 @@
+INDUSTRY: BFSI
+
+1. What does BFSI stand for?
+A. Banking, Financial Services, Insurance
+B. Business, Finance, Securities, Investment
+C. Banking, Finance, Stock, Insurance
+D. Business, Financial, Services, Insurance
+Correct Answer: A
+
+2. What is the primary function of a commercial bank?
+A. Insurance underwriting
+B. Accepting deposits and lending money
+C. Stock trading
+D. Investment advisory
+Correct Answer: B
+
+3. What does KYC stand for in banking?
+A. Keep Your Cash
+B. Know Your Customer
+C. Keep Your Card
+D. Know Your Credit
+Correct Answer: B
+
+4. What is a mutual fund?
+A. A type of bank account
+B. A pooled investment vehicle
+C. An insurance policy
+D. A credit card
+Correct Answer: B
+
+5. What does EMI stand for?
+A. Easy Money Investment
+B. Equated Monthly Installment
+C. Electronic Money Interface
+D. Emergency Money Insurance
+Correct Answer: B
+
+6. What is the full form of ATM?
+A. Automatic Teller Machine
+B. Advanced Transaction Method
+C. Automated Transfer Machine
+D. Any Time Money
+Correct Answer: A
+
+7. What is a credit score?
+A. Amount of money in your account
+B. A numerical representation of creditworthiness
+C. Interest rate on loans
+D. Bank service charges
+Correct Answer: B
+
+8. What does NEFT stand for?
+A. National Electronic Funds Transfer
+B. New Electronic Financial Transaction
+C. National Emergency Fund Transfer
+D. Net Electronic Fund Transfer
+Correct Answer: A
+
+9. What is term insurance?
+A. Insurance for a specific period
+B. Insurance for life
+C. Health insurance
+D. Vehicle insurance
+Correct Answer: A
+
+10. What does SIP stand for in mutual funds?
+A. Systematic Investment Plan
+B. Simple Investment Process
+C. Secure Investment Portfolio
+D. Standard Investment Procedure
+Correct Answer: A
+
+INDUSTRY: Conglomerate
+
+1. What is a conglomerate?
+A. A single business entity
+B. A company that owns multiple unrelated businesses
+C. A government organization
+D. A non-profit organization
+Correct Answer: B
+
+2. Which is an example of a famous conglomerate?
+A. Microsoft
+B. General Electric
+C. McDonald's
+D. Walmart
+Correct Answer: B
+
+3. What is the main advantage of a conglomerate structure?
+A. Lower costs
+B. Risk diversification
+C. Faster growth
+D. Better marketing
+Correct Answer: B
+
+4. What does diversification mean in business?
+A. Focusing on one product
+B. Spreading business across different sectors
+C. Reducing employees
+D. Increasing prices
+Correct Answer: B
+
+5. What is a holding company?
+A. A company that holds inventory
+B. A company that owns other companies
+C. A company that holds events
+D. A company that holds patents
+Correct Answer: B
+
+6. What is vertical integration?
+A. Building tall buildings
+B. Owning different stages of production
+C. Hiring more employees
+D. Expanding internationally
+Correct Answer: B
+
+7. What is horizontal integration?
+A. Acquiring competitors in the same industry
+B. Building horizontally
+C. Reducing workforce
+D. Changing management
+Correct Answer: A
+
+8. What is a subsidiary company?
+A. A company that provides subsidies
+B. A company controlled by another company
+C. A government company
+D. A small company
+Correct Answer: B
+
+9. What does M&A stand for?
+A. Marketing and Advertising
+B. Mergers and Acquisitions
+C. Management and Administration
+D. Manufacturing and Assembly
+Correct Answer: B
+
+10. What is synergy in business?
+A. Working together for better results
+B. Competition between companies
+C. Individual performance
+D. Market research
+Correct Answer: A
+
+INDUSTRY: Automotive
+
+1. What does ICE stand for in automotive?
+A. Internal Combustion Engine
+B. Integrated Control Electronics
+C. International Car Exhibition
+D. Intelligent Control Engine
+Correct Answer: A
+
+2. What does EV stand for?
+A. Engine Vehicle
+B. Electric Vehicle
+C. Emergency Vehicle
+D. Efficient Vehicle
+Correct Answer: B
+
+3. What is the function of a catalytic converter?
+A. Increases engine power
+B. Reduces harmful emissions
+C. Improves fuel efficiency
+D. Controls engine temperature
+Correct Answer: B
+
+4. What does ABS stand for in cars?
+A. Automatic Braking System
+B. Anti-lock Braking System
+C. Advanced Brake System
+D. Air Brake System
+Correct Answer: B
+
+5. What is the purpose of a transmission?
+A. To transmit radio signals
+B. To transfer power from engine to wheels
+C. To control air conditioning
+D. To manage fuel injection
+Correct Answer: B
+
+6. What does SUV stand for?
+A. Super Utility Vehicle
+B. Sport Utility Vehicle
+C. Special Urban Vehicle
+D. Standard Utility Vehicle
+Correct Answer: B
+
+7. What is regenerative braking?
+A. Braking that repairs itself
+B. Converting kinetic energy back to electrical energy
+C. Emergency braking system
+D. Automatic braking
+Correct Answer: B
+
+8. What does OEM stand for?
+A. Original Equipment Manufacturer
+B. Optimal Engine Management
+C. Overseas Equipment Market
+D. Official Equipment Manual
+Correct Answer: A
+
+9. What is the function of an alternator?
+A. Changes gears automatically
+B. Generates electrical power
+C. Controls steering
+D. Manages fuel flow
+Correct Answer: B
+
+10. What does ADAS stand for?
+A. Automatic Driving Assistance System
+B. Advanced Driver Assistance Systems
+C. Automated Driving and Safety
+D. Advanced Detection and Alert System
+Correct Answer: B
+
+INDUSTRY: Manufacturing
+
+1. What is lean manufacturing?
+A. Manufacturing lightweight products
+B. Eliminating waste in production processes
+C. Reducing workforce
+D. Using less machinery
+Correct Answer: B
+
+2. What does JIT stand for in manufacturing?
+A. Just In Time
+B. Job Interview Training
+C. Joint Industrial Technology
+D. Japanese Industrial Technique
+Correct Answer: A
+
+3. What is Six Sigma?
+A. A type of machinery
+B. A quality improvement methodology
+C. A manufacturing location
+D. A safety protocol
+Correct Answer: B
+
+4. What does QC stand for?
+A. Quality Control
+B. Quick Check
+C. Quantity Count
+D. Quality Certificate
+Correct Answer: A
+
+5. What is automation in manufacturing?
+A. Manual labor
+B. Using machines to perform tasks
+C. Increasing production speed
+D. Reducing costs
+Correct Answer: B
+
+6. What does ERP stand for?
+A. Enterprise Resource Planning
+B. Emergency Response Protocol
+C. Electronic Resource Processing
+D. Efficient Resource Production
+Correct Answer: A
+
+7. What is a supply chain?
+A. A chain used in factories
+B. Network of suppliers, manufacturers, and distributors
+C. Employee hierarchy
+D. Production schedule
+Correct Answer: B
+
+8. What does ISO stand for?
+A. International Standards Organization
+B. Industrial Safety Operations
+C. Integrated System Operations
+D. International Service Organization
+Correct Answer: A
+
+9. What is predictive maintenance?
+A. Scheduled maintenance
+B. Using data to predict when maintenance is needed
+C. Emergency repairs
+D. Daily equipment checks
+Correct Answer: B
+
+10. What does OEE stand for?
+A. Overall Equipment Effectiveness
+B. Operational Excellence Evaluation
+C. Optimal Energy Efficiency
+D. Organizational Equipment Evaluation
+Correct Answer: A
+
+INDUSTRY: Healthcare/Pharma
+
+1. What does FDA stand for?
+A. Food and Drug Administration
+B. Federal Drug Agency
+C. Food Distribution Authority
+D. Federal Disease Authority
+Correct Answer: A
+
+2. What is a clinical trial?
+A. A court proceeding
+B. Research study to test new treatments
+C. Medical examination
+D. Hospital procedure
+Correct Answer: B
+
+3. What does GMP stand for in pharmaceuticals?
+A. Good Manufacturing Practice
+B. General Medical Procedure
+C. Global Medicine Protocol
+D. Government Medical Policy
+Correct Answer: A
+
+4. What is a generic drug?
+A. A new drug
+B. A drug with the same active ingredient as brand-name drug
+C. An experimental drug
+D. A prescription drug
+Correct Answer: B
+
+5. What does API stand for in pharma?
+A. Advanced Pharmaceutical Ingredient
+B. Active Pharmaceutical Ingredient
+C. Approved Pharmaceutical Item
+D. Automated Pharmaceutical Interface
+Correct Answer: B
+
+6. What is pharmacovigilance?
+A. Security in pharmacies
+B. Monitoring drug safety and adverse effects
+C. Drug manufacturing process
+D. Pharmacy management
+Correct Answer: B
+
+7. What does R&D stand for?
+A. Research and Development
+B. Regulation and Distribution
+C. Review and Documentation
+D. Risk and Diagnosis
+Correct Answer: A
+
+8. What is bioequivalence?
+A. Equal biological effects
+B. Same biological origin
+C. Similar biological structure
+D. Biological compatibility
+Correct Answer: A
+
+9. What does CDSCO stand for?
+A. Central Drugs Standard Control Organization
+B. Clinical Drug Safety Control Office
+C. Central Disease Surveillance Control Organization
+D. Clinical Data Safety Control Organization
+Correct Answer: A
+
+10. What is a patent in pharmaceuticals?
+A. A medical procedure
+B. Exclusive right to manufacture and sell a drug
+C. A type of medicine
+D. A research method
+Correct Answer: B
+
+INDUSTRY: Diversified
+
+1. What does diversified business mean?
+A. Operating in multiple industries
+B. Having diverse employees
+C. Using different technologies
+D. Serving diverse customers
+Correct Answer: A
+
+2. What is portfolio diversification?
+A. Creating different portfolios
+B. Spreading investments across various assets
+C. Managing multiple projects
+D. Organizing documents
+Correct Answer: B
+
+3. What is the main benefit of diversification?
+A. Higher profits
+B. Risk reduction
+C. Faster growth
+D. Lower costs
+Correct Answer: B
+
+4. What is market diversification?
+A. Creating diverse markets
+B. Entering different market segments
+C. Marketing to diverse groups
+D. Changing market strategies
+Correct Answer: B
+
+5. What does cross-selling mean?
+A. Selling across borders
+B. Selling additional products to existing customers
+C. Selling at crossroads
+D. Selling through multiple channels
+Correct Answer: B
+
+6. What is revenue diversification?
+A. Increasing revenue
+B. Generating income from multiple sources
+C. Distributing revenue
+D. Calculating revenue
+Correct Answer: B
+
+7. What is geographic diversification?
+A. Studying geography
+B. Operating in multiple locations
+C. Mapping territories
+D. Regional specialization
+Correct Answer: B
+
+8. What does multi-industry mean?
+A. Multiple factories
+B. Operating across different industries
+C. Industrial cooperation
+D. Industry analysis
+Correct Answer: B
+
+9. What is business unit diversification?
+A. Dividing business units
+B. Creating separate business divisions
+C. Unit management
+D. Business organization
+Correct Answer: B
+
+10. What is strategic diversification?
+A. Military strategy
+B. Planned expansion into new areas
+C. Strategic planning
+D. Diverse strategies
+Correct Answer: B
+
+INDUSTRY: Aviation
+
+1. What does IATA stand for?
+A. International Air Transport Association
+B. International Aviation Technology Association
+C. International Airport Terminal Association
+D. International Aircraft Training Association
+Correct Answer: A
+
+2. What is the function of air traffic control?
+A. Controlling air quality
+B. Managing aircraft movements safely
+C. Controlling airline schedules
+D. Managing airport facilities
+Correct Answer: B
+
+3. What does FAA stand for?
+A. Federal Aviation Administration
+B. Flight Attendant Association
+C. Federal Airport Authority
+D. Flight Aviation Academy
+Correct Answer: A
+
+4. What is the black box in an aircraft?
+A. A storage compartment
+B. Flight data recorder
+C. Navigation equipment
+D. Communication device
+Correct Answer: B
+
+5. What does MRO stand for in aviation?
+A. Maintenance, Repair, and Operations
+B. Military Radar Operations
+C. Maximum Range Operations
+D. Mechanical Repair Organization
+Correct Answer: A
+
+6. What is the purpose of a flight plan?
+A. Planning passenger seating
+B. Detailed route and safety information for flight
+C. Planning in-flight meals
+D. Scheduling maintenance
+Correct Answer: B
+
+7. What does ICAO stand for?
+A. International Civil Aviation Organization
+B. International Commercial Aviation Office
+C. International Cargo Aviation Organization
+D. International Charter Aviation Office
+Correct Answer: A
+
+8. What is turbulence?
+A. Engine malfunction
+B. Irregular air movement causing aircraft instability
+C. Navigation error
+D. Communication failure
+Correct Answer: B
+
+9. What does ATC stand for?
+A. Air Traffic Control
+B. Aircraft Technical Center
+C. Aviation Training Center
+D. Airport Terminal Control
+Correct Answer: A
+
+10. What is the purpose of landing gear?
+A. Steering the aircraft
+B. Supporting aircraft during takeoff, landing, and ground operations
+C. Controlling altitude
+D. Managing fuel consumption
+Correct Answer: B
+
+INDUSTRY: New-Age
+
+1. What does AI stand for?
+A. Artificial Intelligence
+B. Automated Interface
+C. Advanced Integration
+D. Application Interface
+Correct Answer: A
+
+2. What is machine learning?
+A. Teaching machines manually
+B. Algorithms that improve through experience
+C. Machine operation training
+D. Automated manufacturing
+Correct Answer: B
+
+3. What does IoT stand for?
+A. Internet of Things
+B. Integration of Technology
+C. Information on Technology
+D. Interface of Tools
+Correct Answer: A
+
+4. What is blockchain technology?
+A. A type of database
+B. Distributed ledger technology
+C. Block construction method
+D. Chain manufacturing process
+Correct Answer: B
+
+5. What does VR stand for?
+A. Virtual Reality
+B. Video Recording
+C. Visual Representation
+D. Variable Rate
+Correct Answer: A
+
+6. What is cloud computing?
+A. Weather prediction
+B. Computing services delivered over the internet
+C. Sky observation
+D. Atmospheric research
+Correct Answer: B
+
+7. What does AR stand for?
+A. Augmented Reality
+B. Automated Response
+C. Advanced Research
+D. Application Review
+Correct Answer: A
+
+8. What is fintech?
+A. Financial technology
+B. Final technology
+C. Finished technology
+D. Fixed technology
+Correct Answer: A
+
+9. What does SaaS stand for?
+A. Software as a Service
+B. System as a Solution
+C. Service as a Software
+D. Security as a Service
+Correct Answer: A
+
+10. What is big data?
+A. Large storage devices
+B. Extremely large datasets requiring special tools
+C. Big computer systems
+D. Large software programs
+Correct Answer: B
+
+INDUSTRY: Media & Entertainment
+
+1. What does OTT stand for?
+A. Over The Top
+B. Online Television Technology
+C. Optical Transfer Technology
+D. Original Television Transmission
+Correct Answer: A
+
+2. What is streaming media?
+A. Water streaming
+B. Continuous delivery of audio/video content
+C. Live broadcasting
+D. Media storage
+Correct Answer: B
+
+3. What does VOD stand for?
+A. Video On Demand
+B. Voice Over Data
+C. Visual Output Device
+D. Virtual Online Display
+Correct Answer: A
+
+4. What is digital rights management (DRM)?
+A. Digital file organization
+B. Technology to control access to copyrighted content
+C. Digital marketing rights
+D. Data recovery management
+Correct Answer: B
+
+5. What does CGI stand for in movies?
+A. Computer Generated Imagery
+B. Creative Graphics Interface
+C. Cinema Graphics Integration
+D. Computer Graphics Implementation
+Correct Answer: A
+
+6. What is post-production?
+A. After movie release
+B. Editing and finishing processes after filming
+C. Production planning
+D. Marketing activities
+Correct Answer: B
+
+7. What does IP stand for in entertainment?
+A. Internet Protocol
+B. Intellectual Property
+C. Interactive Platform
+D. Independent Production
+Correct Answer: B
+
+8. What is content syndication?
+A. Content creation
+B. Licensing content to multiple distributors
+C. Content storage
+D. Content editing
+Correct Answer: B
+
+9. What does SVOD stand for?
+A. Subscription Video On Demand
+B. Streaming Video Output Device
+C. Standard Video Online Distribution
+D. Secure Video On Demand
+Correct Answer: A
+
+10. What is transmedia storytelling?
+A. Translating stories
+B. Telling stories across multiple platforms
+C. Traditional media stories
+D. Transforming media content
+Correct Answer: B
+
+INDUSTRY: Retail
+
+1. What does POS stand for in retail?
+A. Point of Sale
+B. Product on Shelf
+C. Price of Stock
+D. Purchase Order System
+Correct Answer: A
+
+2. What is omnichannel retailing?
+A. Single channel sales
+B. Integrated multi-channel customer experience
+C. Online-only sales
+D. Multiple store locations
+Correct Answer: B
+
+3. What does SKU stand for?
+A. Stock Keeping Unit
+B. Sales Knowledge Update
+C. Store Keeping Utility
+D. Standard Keeping Unit
+Correct Answer: A
+
+4. What is inventory turnover?
+A. Rotating inventory
+B. Rate at which inventory is sold and replaced
+C. Inventory counting
+D. Inventory storage
+Correct Answer: B
+
+5. What does RFID stand for?
+A. Radio Frequency Identification
+B. Retail Frequency Information Display
+C. Remote File Information Database
+D. Rapid Frequency Item Detection
+Correct Answer: A
+
+6. What is cross-merchandising?
+A. International sales
+B. Displaying related products together
+C. Crossing product lines
+D. Merchandise exchange
+Correct Answer: B
+
+7. What does CRM stand for?
+A. Customer Relationship Management
+B. Customer Retail Management
+C. Cash Register Management
+D. Customer Return Management
+Correct Answer: A
+
+8. What is planogramming?
+A. Planning programs
+B. Visual plan for product placement
+C. Programming systems
+D. Planning logistics
+Correct Answer: B
+
+9. What does BOPIS stand for?
+A. Buy Online, Pick-up In Store
+B. Business Operations Information System
+C. Basic Online Purchase Interface System
+D. Bulk Order Processing Information System
+Correct Answer: A
+
+10. What is shrinkage in retail?
+A. Product size reduction
+B. Loss of inventory due to theft, damage, or error
+C. Store size reduction
+D. Price reduction
+Correct Answer: B
+
+INDUSTRY: FMCG
+
+1. What does FMCG stand for?
+A. Fast Moving Consumer Goods
+B. Frequent Marketing Consumer Groups
+C. Fast Manufacturing Consumer Goods
+D. Final Marketing Consumer Goods
+Correct Answer: A
+
+2. What is the typical shelf life of FMCG products?
+A. Very long
+B. Short to medium
+C. Permanent
+D. Variable
+Correct Answer: B
+
+3. What does CPG stand for?
+A. Consumer Packaged Goods
+B. Commercial Product Groups
+C. Customer Purchase Guidelines
+D. Certified Product Guarantee
+Correct Answer: A
+
+4. What is brand loyalty in FMCG?
+A. Employee loyalty
+B. Customer preference for specific brands
+C. Brand partnerships
+D. Brand licensing
+Correct Answer: B
+
+5. What does PLV stand for?
+A. Product Life Value
+B. Point of Sale Advertising Material
+C. Private Label Vendor
+D. Product Launch Vehicle
+Correct Answer: B
+
+6. What is market penetration?
+A. Entering new markets
+B. Percentage of potential customers who buy the product
+C. Market research
+D. Competitive analysis
+Correct Answer: B
+
+7. What does NPD stand for?
+A. New Product Development
+B. National Product Distribution
+C. Net Product Demand
+D. Next Phase Development
+Correct Answer: A
+
+8. What is category management?
+A. Managing employees
+B. Strategic approach to managing product categories
+C. Inventory management
+D. Store management
+Correct Answer: B
+
+9. What does GTM stand for?
+A. Go To Market
+B. Global Trade Management
+C. General Trade Marketing
+D. Goods Transport Management
+Correct Answer: A
+
+10. What is trade marketing?
+A. International trade
+B. Marketing to retailers and distributors
+C. Trading products
+D. Market trading
+Correct Answer: B
+
+INDUSTRY: IT/ITES
+
+1. What does ITES stand for?
+A. Information Technology Enabled Services
+B. International Technology Export Services
+C. Integrated Technology Enterprise Solutions
+D. Internet Technology Electronic Services
+Correct Answer: A
+
+2. What is cloud computing?
+A. Weather prediction
+B. Computing services delivered over the internet
+C. Sky observation
+D. Atmospheric computing
+Correct Answer: B
+
+3. What does API stand for?
+A. Application Programming Interface
+B. Automated Programming Integration
+C. Advanced Programming Implementation
+D. Application Process Integration
+Correct Answer: A
+
+4. What is agile methodology?
+A. Physical fitness program
+B. Iterative software development approach
+C. Fast computing
+D. Quick decision making
+Correct Answer: B
+
+5. What does DevOps stand for?
+A. Development Operations
+B. Device Operations
+C. Deployment Options
+D. Developer Options
+Correct Answer: A
+
+6. What is artificial intelligence?
+A. Fake intelligence
+B. Machine intelligence that mimics human cognitive functions
+C. Automated systems
+D. Computer programming
+Correct Answer: B
+
+7. What does SLA stand for?
+A. Service Level Agreement
+B. Software License Agreement
+C. System Level Architecture
+D. Standard Level Assessment
+Correct Answer: A
+
+8. What is cybersecurity?
+A. Robot security
+B. Protection of digital systems from threats
+C. Internet safety
+D. Computer maintenance
+Correct Answer: B
+
+9. What does BPO stand for?
+A. Business Process Outsourcing
+B. Basic Process Operations
+C. Business Performance Optimization
+D. Backend Process Organization
+Correct Answer: A
+
+10. What is data analytics?
+A. Data storage
+B. Process of examining data to draw conclusions
+C. Data entry
+D. Data backup
+Correct Answer: B
+
+INDUSTRY: Telecom
+
+1. What does GSM stand for?
+A. Global System for Mobile Communications
+B. General Service Management
+C. Global Satellite Monitoring
+D. General System Management
+Correct Answer: A
+
+2. What is 5G technology?
+A. Fifth generation wireless technology
+B. Five gigabyte storage
+C. Five group network
+D. Fifth grade technology
+Correct Answer: A
+
+3. What does VoIP stand for?
+A. Voice over Internet Protocol
+B. Video over Internet Platform
+C. Virtual Online Internet Portal
+D. Voice Output Internet Program
+Correct Answer: A
+
+4. What is bandwidth?
+A. Width of a band
+B. Data transmission capacity
+C. Radio frequency
+D. Network speed
+Correct Answer: B
+
+5. What does ISP stand for?
+A. Internet Service Provider
+B. International Service Protocol
+C. Internal System Process
+D. Internet Security Program
+Correct Answer: A
+
+6. What is fiber optic communication?
+A. Optical illusion
+B. Data transmission using light through glass fibers
+C. Fiber manufacturing
+D. Optical equipment
+Correct Answer: B
+
+7. What does LTE stand for?
+A. Long Term Evolution
+B. Latest Technology Equipment
+C. Local Telephone Exchange
+D. Limited Time Engagement
+Correct Answer: A
+
+8. What is network latency?
+A. Network delay
+B. Network capacity
+C. Network security
+D. Network coverage
+Correct Answer: A
+
+9. What does CDMA stand for?
+A. Code Division Multiple Access
+B. Central Data Management Authority
+C. Communication Device Management Association
+D. Cellular Data Monitoring Application
+Correct Answer: A
+
+10. What is roaming in telecom?
+A. Walking around
+B. Using mobile services outside home network
+C. Network searching
+D. Signal boosting
+Correct Answer: B
+
+INDUSTRY: Insurance
+
+1. What is an insurance premium?
+A. Best insurance policy
+B. Amount paid for insurance coverage
+C. Insurance bonus
+D. Insurance discount
+Correct Answer: B
+
+2. What does claim mean in insurance?
+A. Claiming ownership
+B. Request for payment under insurance policy
+C. Insurance advertisement
+D. Policy renewal
+Correct Answer: B
+
+3. What is a deductible?
+A. Tax deduction
+B. Amount paid by insured before insurance pays
+C. Insurance discount
+D. Policy benefit
+Correct Answer: B
+
+4. What does underwriting mean?
+A. Writing under documents
+B. Evaluating and pricing insurance risks
+C. Policy writing
+D. Claim processing
+Correct Answer: B
+
+5. What is actuarial science?
+A. Actual science
+B. Mathematical assessment of risk and uncertainty
+C. Insurance sales
+D. Policy administration
+Correct Answer: B
+
+6. What does IRDA stand for?
+A. Insurance Regulatory and Development Authority
+B. International Risk Development Association
+C. Insurance Risk and Damage Assessment
+D. Indian Risk Development Agency
+Correct Answer: A
+
+7. What is reinsurance?
+A. Renewing insurance
+B. Insurance for insurance companies
+C. Repeated insurance
+D. Returned insurance
+Correct Answer: B
+
+8. What is a policy holder?
+A. Person holding policies
+B. Person who owns an insurance policy
+C. Insurance agent
+D. Policy document
+Correct Answer: B
+
+9. What does no-claim bonus mean?
+A. No bonus given
+B. Discount for not making claims
+C. Bonus without claims
+D. Claim rejection
+Correct Answer: B
+
+10. What is term insurance?
+A. Insurance terminology
+B. Life insurance for specific period
+C. Insurance terms and conditions
+D. Temporary insurance
+Correct Answer: B
+
+INDUSTRY: Financial Services
+
+1. What are financial services?
+A. Free services
+B. Economic services provided by finance industry
+C. Government services
+D. Social services
+Correct Answer: B
+
+2. What is investment banking?
+A. Bank investments
+B. Financial services for corporations and governments
+C. Personal banking
+D. Savings banking
+Correct Answer: B
+
+3. What does asset management mean?
+A. Managing company assets
+B. Professional management of investments
+C. Property management
+D. Equipment management
+Correct Answer: B
+
+4. What is wealth management?
+A. Creating wealth
+B. Comprehensive financial services for high-net-worth individuals
+C. Managing company wealth
+D. Wealth distribution
+Correct Answer: B
+
+5. What does IPO stand for?
+A. Initial Public Offering
+B. International Purchase Order
+C. Internal Process Operation
+D. Investment Portfolio Organization
+Correct Answer: A
+
+6. What is private equity?
+A. Private ownership
+B. Investment in private companies
+C. Personal equity
+D. Equity trading
+Correct Answer: B
+
+7. What does hedge fund mean?
+A. Garden fund
+B. Investment fund using diverse strategies
+C. Protection fund
+D. Savings fund
+Correct Answer: B
+
+8. What is financial planning?
+A. Planning finances
+B. Process of meeting life goals through financial management
+C. Budget planning
+D. Investment planning
+Correct Answer: B
+
+9. What does ROI stand for?
+A. Return on Investment
+B. Rate of Interest
+C. Risk of Investment
+D. Revenue of Investment
+Correct Answer: A
+
+10. What is portfolio diversification?
+A. Portfolio variety
+B. Spreading investments to reduce risk
+C. Portfolio management
+D. Investment selection
+Correct Answer: B
+
+INDUSTRY: Infra
+
+1. What does infrastructure mean?
+A. Internal structure
+B. Basic physical systems of a country or organization
+C. Building structure
+D. Information structure
+Correct Answer: B
+
+2. What is civil engineering?
+A. Civilian engineering
+B. Engineering of infrastructure and public works
+C. Social engineering
+D. Community engineering
+Correct Answer: B
+
+3. What does PPP stand for in infrastructure?
+A. Public Private Partnership
+B. Private Property Protection
+C. Public Property Program
+D. Private Partnership Program
+Correct Answer: A
+
+4. What is smart city infrastructure?
+A. Intelligent buildings
+B. Technology-integrated urban infrastructure
+C. Modern cities
+D. Automated systems
+Correct Answer: B
+
+5. What does BOT stand for?
+A. Build Operate Transfer
+B. Business Operations Technology
+C. Basic Operations Training
+D. Build Operations Team
+Correct Answer: A
+
+6. What is green infrastructure?
+A. Green colored buildings
+B. Environmentally sustainable infrastructure
+C. Garden infrastructure
+D. Natural infrastructure
+Correct Answer: B
+
+7. What does EPC stand for?
+A. Engineering, Procurement, and Construction
+B. Environmental Protection Committee
+C. Electronic Process Control
+D. Emergency Preparedness Committee
+Correct Answer: A
+
+8. What is urban planning?
+A. City planning
+B. Design and organization of urban spaces
+C. Planning events
+D. Business planning
+Correct Answer: B
+
+9. What does NHAI stand for?
+A. National Highways Authority of India
+B. National Housing Authority of India
+C. National Health Authority of India
+D. National Heritage Authority of India
+Correct Answer: A
+
+10. What is sustainable infrastructure?
+A. Long-lasting infrastructure
+B. Infrastructure that meets present needs without compromising future
+C. Strong infrastructure
+D. Reliable infrastructure
+Correct Answer: B
+
+INDUSTRY: Construction
+
+1. What does the construction industry do?
+A. Grows plants
+B. Designs software
+C. Builds buildings, roads, and bridges
+D. Provides loans
+Correct Answer: C
+
+2. What is a person who designs buildings called?
+A. A Builder
+B. An Architect
+C. A Plumber
+D. An Electrician
+Correct Answer: B
+
+3. What is concrete made of?
+A. Sand and water only
+B. Cement, sand, gravel, and water
+C. Wood and metal
+D. Plastic and rubber
+Correct Answer: B
+
+4. What does HVAC stand for?
+A. Heavy Vehicle Air Conditioning
+B. Heating, Ventilation, and Air Conditioning
+C. High Voltage Alternating Current
+D. Home Value Assessment Calculator
+Correct Answer: B
+
+5. What is rebar used for?
+A. Decorating buildings
+B. Reinforcing concrete
+C. Painting walls
+D. Installing windows
+Correct Answer: B
+
+6. What does PPE stand for in construction?
+A. Personal Protection Equipment
+B. Professional Project Evaluation
+C. Public Property Examination
+D. Planned Project Execution
+Correct Answer: A
+
+7. What is the purpose of a foundation?
+A. To make buildings look nice
+B. To support the weight of a structure
+C. To provide electricity
+D. To store water
+Correct Answer: B
+
+8. What does BIM stand for?
+A. Building Information Modeling
+B. Basic Infrastructure Management
+C. Building Installation Method
+D. Business Information Management
+Correct Answer: A
+
+9. What is project management in construction?
+A. Managing projects
+B. Planning, organizing, and controlling construction projects
+C. Project documentation
+D. Project financing
+Correct Answer: B
+
+10. What does QA/QC stand for?
+A. Quality Assurance/Quality Control
+B. Quick Assessment/Quick Check
+C. Quantity Analysis/Quantity Control
+D. Quality Agreement/Quality Certificate
+Correct Answer: A
+
+INDUSTRY: Logistics
+
+1. What is logistics?
+A. Logic systems
+B. Management of flow of goods and services
+C. Mathematical calculations
+D. Computer programming
+Correct Answer: B
+
+2. What does SCM stand for?
+A. Supply Chain Management
+B. Strategic Customer Management
+C. System Control Management
+D. Sales Channel Management
+Correct Answer: A
+
+3. What is warehousing?
+A. Storing goods in warehouses
+B. Building warehouses
+C. Warehouse management
+D. Warehouse security
+Correct Answer: A
+
+4. What does JIT stand for in logistics?
+A. Just In Time
+B. Job Interview Training
+C. Joint International Transport
+D. Japanese Industrial Technology
+Correct Answer: A
+
+5. What is freight forwarding?
+A. Moving freight forward
+B. Organizing shipment of goods
+C. Freight calculation
+D. Freight insurance
+Correct Answer: B
+
+6. What does LTL stand for?
+A. Less Than Truckload
+B. Long Term Logistics
+C. Local Transport License
+D. Large Transport Load
+Correct Answer: A
+
+7. What is inventory management?
+A. Counting inventory
+B. Overseeing and controlling ordering, storage and use of inventory
+C. Inventory storage
+D. Inventory purchasing
+Correct Answer: B
+
+8. What does EDI stand for?
+A. Electronic Data Interchange
+B. Electronic Document Interface
+C. Electronic Data Integration
+D. Electronic Distribution Information
+Correct Answer: A
+
+9. What is cross-docking?
+A. Crossing docks
+B. Transferring goods directly from inbound to outbound transportation
+C. Dock construction
+D. Dock management
+Correct Answer: B
+
+10. What does WMS stand for?
+A. Warehouse Management System
+B. Worldwide Management Service
+C. Workflow Management System
+D. Waste Management Service
+Correct Answer: A
+
+INDUSTRY: Business Consulting and Services
+
+1. What is business consulting?
+A. Business meetings
+B. Professional advice to improve business performance
+C. Business networking
+D. Business training
+Correct Answer: B
+
+2. What does KPI stand for?
+A. Key Performance Indicator
+B. Knowledge Performance Index
+C. Key Process Improvement
+D. Key Personnel Information
+Correct Answer: A
+
+3. What is change management?
+A. Changing management
+B. Structured approach to transitioning organizations
+C. Management changes
+D. Change documentation
+Correct Answer: B
+
+4. What does ROI analysis involve?
+A. Return on Investment calculation
+B. Risk of Investment assessment
+C. Rate of Interest analysis
+D. Revenue of Investment tracking
+Correct Answer: A
+
+5. What is strategic planning?
+A. Planning strategies
+B. Process of defining organizational direction and goals
+C. Strategic thinking
+D. Plan development
+Correct Answer: B
+
+6. What does SWOT analysis stand for?
+A. Strengths, Weaknesses, Opportunities, Threats
+B. Systems, Workflows, Operations, Technology
+C. Strategic, Workforce, Operational, Tactical
+D. Sales, Workforce, Operations, Training
+Correct Answer: A
+
+7. What is process optimization?
+A. Process improvement
+B. Making processes as efficient as possible
+C. Process documentation
+D. Process automation
+Correct Answer: B
+
+8. What does CRM stand for?
+A. Customer Relationship Management
+B. Customer Resource Management
+C. Client Relationship Monitoring
+D. Customer Revenue Management
+Correct Answer: A
+
+9. What is organizational restructuring?
+A. Building renovation
+B. Changing organizational structure and operations
+C. Staff reorganization
+D. Organizational planning
+Correct Answer: B
+
+10. What does benchmarking mean?
+A. Setting benchmarks
+B. Comparing performance against best practices
+C. Performance measurement
+D. Standard setting
+Correct Answer: B
+
+INDUSTRY: Government Administration
+
+1. What is public administration?
+A. Public speaking
+B. Implementation of government policy
+C. Public relations
+D. Public services
+Correct Answer: B
+
+2. What does RTI stand for?
+A. Right to Information
+B. Real Time Information
+C. Rapid Transit Information
+D. Regional Transport Information
+Correct Answer: A
+
+3. What is e-governance?
+A. Electronic government
+B. Use of technology in government operations
+C. Online government
+D. Digital government
+Correct Answer: B
+
+4. What does PIL stand for?
+A. Public Interest Litigation
+B. Public Information Law
+C. Personal Information License
+D. Public Infrastructure Law
+Correct Answer: A
+
+5. What is bureaucracy?
+A. Bureau management
+B. Administrative system with complex procedures
+C. Government offices
+D. Official procedures
+Correct Answer: B
+
+6. What does CAG stand for?
+A. Comptroller and Auditor General
+B. Central Administrative Government
+C. Chief Administrative Group
+D. Central Audit Group
+Correct Answer: A
+
+7. What is policy implementation?
+A. Policy creation
+B. Putting policies into practice
+C. Policy analysis
+D. Policy documentation
+Correct Answer: B
+
+8. What does UPSC stand for?
+A. Union Public Service Commission
+B. United Public Service Committee
+C. Universal Public Service Commission
+D. Urban Public Service Commission
+Correct Answer: A
+
+9. What is transparency in governance?
+A. Clear glass buildings
+B. Openness and accountability in government operations
+C. Transparent policies
+D. Open meetings
+Correct Answer: B
+
+10. What does GFR stand for?
+A. General Financial Rules
+B. Government Financial Regulations
+C. General Fiscal Rules
+D. Government Fiscal Regulations
+Correct Answer: A
+
+INDUSTRY: PSU
+
+1. What does PSU stand for?
+A. Public Sector Undertaking
+B. Private Sector Unit
+C. Public Service Unit
+D. Public Sector Union
+Correct Answer: A
+
+2. What is a public sector enterprise?
+A. Private company
+B. Government-owned business entity
+C. Public company
+D. Social enterprise
+Correct Answer: B
+
+3. What does CPSE stand for?
+A. Central Public Sector Enterprise
+B. Central Private Sector Enterprise
+C. Central Public Service Enterprise
+D. Central Public Sector Establishment
+Correct Answer: A
+
+4. What is disinvestment?
+A. Investment removal
+B. Government selling stake in PSUs
+C. Investment loss
+D. Investment strategy
+Correct Answer: B
+
+5. What does ONGC stand for?
+A. Oil and Natural Gas Corporation
+B. Overseas Natural Gas Company
+C. Oil and Nuclear Gas Corporation
+D. Offshore Natural Gas Corporation
+Correct Answer: A
+
+6. What is privatization?
+A. Making private
+B. Transfer of ownership from public to private sector
+C. Private investment
+D. Private management
+Correct Answer: B
+
+7. What does SAIL stand for?
+A. Steel Authority of India Limited
+B. Shipping Authority of India Limited
+C. State Authority of India Limited
+D. Service Authority of India Limited
+Correct Answer: A
+
+8. What is a Maharatna company?
+A. Large company
+B. Highest category of PSU with greater autonomy
+C. Profitable company
+D. Government company
+Correct Answer: B
+
+9. What does BHEL stand for?
+A. Bharat Heavy Electricals Limited
+B. Bharat Heavy Engineering Limited
+C. Bharat Heavy Electronics Limited
+D. Bharat Heavy Equipment Limited
+Correct Answer: A
+
+10. What is the role of PSUs in Indian economy?
+A. Private sector support
+B. Strategic sectors and employment generation
+C. Competition creation
+D. Market regulation
+Correct Answer: B
+
+INDUSTRY: Financial Service
+
+1. What is a financial service?
+A. Free service
+B. Economic service provided by financial institutions
+C. Government service
+D. Social service
+Correct Answer: B
+
+2. What does NBFC stand for?
+A. Non-Banking Financial Company
+B. National Banking Financial Corporation
+C. New Banking Financial Company
+D. Non-Business Financial Company
+Correct Answer: A
+
+3. What is microfinance?
+A. Small finance
+B. Financial services for low-income individuals
+C. Micro payments
+D. Small loans
+Correct Answer: B
+
+4. What does KYC stand for?
+A. Know Your Customer
+B. Keep Your Cash
+C. Know Your Credit
+D. Keep Your Card
+Correct Answer: A
+
+5. What is credit scoring?
+A. Scoring credits
+B. Numerical assessment of creditworthiness
+C. Credit calculation
+D. Credit rating
+Correct Answer: B
+6. What does AML stand for?
+A. Anti-Money Laundering
+B. Automated Money Lending
+C. Advanced Money Lending
+D. Approved Money Lending
+Correct Answer: A
+
+7. What is financial inclusion?
+A. Including finances
+B. Ensuring access to financial services for all
+C. Financial planning
+D. Financial education
+Correct Answer: B
+
+8. What does PAN stand for?
+A. Permanent Account Number
+B. Personal Account Number
+C. Primary Account Number
+D. Public Account Number
+Correct Answer: A
+
+9. What is digital banking?
+A. Digital currency
+B. Banking services delivered through digital channels
+C. Online banking
+D. Electronic banking
+Correct Answer: B
+
+10. What does UPI stand for?
+A. Unified Payments Interface
+B. Universal Payment Integration
+C. United Payment Interface
+D. Universal Payments Interface
+Correct Answer: A

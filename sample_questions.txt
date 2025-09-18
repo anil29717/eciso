@@ -1,0 +1,29 @@
+Technology
+Q: What is the primary purpose of a firewall in network security?
+A) To increase internet speed
+B) To block unauthorized access
+C) To store data
+D) To create backups
+Answer: B
+
+Q: Which programming language is primarily used for web development?
+A) Python
+B) JavaScript
+C) C++
+D) Assembly
+Answer: B
+
+Healthcare
+Q: What is the normal human body temperature in Celsius?
+A) 35°C
+B) 37°C
+C) 39°C
+D) 40°C
+Answer: B
+
+Q: Which organ is responsible for filtering blood?
+A) Heart
+B) Liver
+C) Kidneys
+D) Lungs
+Answer: C
