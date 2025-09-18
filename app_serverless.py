@@ -6,6 +6,7 @@ import os
 import json
 import random
 import uuid
+import base64
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -18,39 +19,105 @@ app.config['UPLOAD_FOLDER'] = '/tmp/uploads'  # Use /tmp for serverless
 # Ensure upload directory exists
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
+# Function to load questions from comprehensive file
+def load_questions_from_file():
+    questions = []
+    try:
+        with open('comprehensive_questions.txt', 'r', encoding='utf-8') as file:
+            content = file.read()
+            
+        current_industry = None
+        question_id = 1
+        lines = content.split('\n')
+        i = 0
+        
+        while i < len(lines):
+            line = lines[i].strip()
+            
+            if line.startswith('INDUSTRY:'):
+                current_industry = line.replace('INDUSTRY:', '').strip()
+                i += 1
+                continue
+            
+            # Look for question number pattern
+            if line and line[0].isdigit() and '.' in line:
+                question_text = line.split('.', 1)[1].strip()
+                
+                # Get options
+                options = {}
+                correct_answer = None
+                
+                for j in range(1, 6):  # Look for A, B, C, D options and correct answer
+                    if i + j < len(lines):
+                        option_line = lines[i + j].strip()
+                        if option_line.startswith('A.'):
+                            options['option_a'] = option_line[2:].strip()
+                        elif option_line.startswith('B.'):
+                            options['option_b'] = option_line[2:].strip()
+                        elif option_line.startswith('C.'):
+                            options['option_c'] = option_line[2:].strip()
+                        elif option_line.startswith('D.'):
+                            options['option_d'] = option_line[2:].strip()
+                        elif option_line.startswith('Correct Answer:'):
+                            correct_answer = option_line.replace('Correct Answer:', '').strip()
+                            break
+                
+                if len(options) == 4 and correct_answer and current_industry:
+                    questions.append({
+                        'id': question_id,
+                        'category': current_industry,
+                        'question_text': question_text,
+                        'option_a': options['option_a'],
+                        'option_b': options['option_b'],
+                        'option_c': options['option_c'],
+                        'option_d': options['option_d'],
+                        'correct_answer': correct_answer
+                    })
+                    question_id += 1
+                
+                i += 6  # Skip to next question
+            else:
+                i += 1
+                
+    except FileNotFoundError:
+        # Fallback to sample questions if file not found
+        questions = [
+            {
+                "id": 1,
+                "category": "Technology",
+                "question_text": "What is the primary purpose of a firewall in cybersecurity?",
+                "option_a": "To speed up internet connection",
+                "option_b": "To block unauthorized access",
+                "option_c": "To store passwords",
+                "option_d": "To backup data",
+                "correct_answer": "B"
+            },
+            {
+                "id": 2,
+                "category": "Finance",
+                "question_text": "Which regulation requires financial institutions to protect customer data?",
+                "option_a": "GDPR",
+                "option_b": "SOX",
+                "option_c": "PCI DSS",
+                "option_d": "GLBA",
+                "correct_answer": "D"
+            },
+            {
+                "id": 3,
+                "category": "Healthcare",
+                "question_text": "What does HIPAA primarily protect?",
+                "option_a": "Financial records",
+                "option_b": "Patient health information",
+                "option_c": "Employee data",
+                "option_d": "Marketing data",
+                "correct_answer": "B"
+            }
+        ]
+    
+    return questions
+
 # In-memory data storage (replace database)
-questions_data = [
-    {
-        "id": 1,
-        "category": "Technology",
-        "question_text": "What is the primary purpose of a firewall in cybersecurity?",
-        "option_a": "To speed up internet connection",
-        "option_b": "To block unauthorized access",
-        "option_c": "To store passwords",
-        "option_d": "To backup data",
-        "correct_answer": "B"
-    },
-    {
-        "id": 2,
-        "category": "Finance",
-        "question_text": "Which regulation requires financial institutions to protect customer data?",
-        "option_a": "GDPR",
-        "option_b": "SOX",
-        "option_c": "PCI DSS",
-        "option_d": "GLBA",
-        "correct_answer": "D"
-    },
-    {
-        "id": 3,
-        "category": "Healthcare",
-        "question_text": "What does HIPAA primarily protect?",
-        "option_a": "Financial records",
-        "option_b": "Patient health information",
-        "option_c": "Employee data",
-        "option_d": "Marketing data",
-        "correct_answer": "B"
-    }
-]
+questions_data = load_questions_from_file()
 
 industries_data = [
     {"name": "Technology", "is_highlighted": True},
@@ -125,36 +192,49 @@ def question():
 
 @app.route('/submit-answer', methods=['POST'])
 def submit_answer():
-    data = request.get_json()
-    selected_answer = data.get('answer')
-    question_id = session.get('current_question_id')
-    
-    # Find the question
-    question = next((q for q in questions_data if q['id'] == question_id), None)
-    if not question:
-        return jsonify({'success': False, 'error': 'Question not found'})
-    
-    is_correct = selected_answer.upper() == question['correct_answer'].upper()
-    
-    # Store game session data
-    game_session = {
-        'id': len(game_sessions) + 1,
-        'journey_id': session.get('journey_id'),
-        'name': session.get('user_name'),
-        'company_name': session.get('company_name'),
-        'industry': session.get('industry'),
-        'question_id': question_id,
-        'selected_answer': selected_answer,
-        'is_correct': is_correct,
-        'timestamp': datetime.now().isoformat()
-    }
-    game_sessions.append(game_session)
-    
-    return jsonify({
-        'success': True,
-        'is_correct': is_correct,
-        'correct_answer': question['correct_answer']
-    })
+    try:
+        data = request.get_json(force=True)
+        selected_answer = data.get('selected_answer') or data.get('answer')
+        question_id = data.get('question_id') or session.get('current_question_id')
+        
+        if not selected_answer:
+            return jsonify({'success': False, 'error': 'No answer provided'})
+        
+        # Find the question
+        question = next((q for q in questions_data if q['id'] == question_id), None)
+        if not question:
+            return jsonify({'success': False, 'error': 'Question not found'})
+        
+        is_correct = selected_answer.upper() == question['correct_answer'].upper()
+        
+        # Store game session data
+        game_session = {
+            'id': len(game_sessions) + 1,
+            'journey_id': session.get('journey_id'),
+            'name': session.get('user_name'),
+            'company_name': session.get('company_name'),
+            'industry': session.get('industry'),
+            'question_id': question_id,
+            'selected_answer': selected_answer,
+            'is_correct': is_correct,
+            'timestamp': datetime.now().isoformat()
+        }
+        game_sessions.append(game_session)
+        
+        return jsonify({
+            'success': True,
+            'correct': is_correct,
+            'is_correct': is_correct,
+            'correct_answer': question['correct_answer'],
+            'explanation': 'Thank you for your answer!'
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'error': f'Submit failed: {str(e)}'})
+
+@app.route('/api/submit-answer', methods=['POST'])
+@cross_origin()
+def api_submit_answer():
+    return submit_answer()
 
 @app.route('/selfie-capture')
 def selfie_capture():
@@ -163,18 +243,53 @@ def selfie_capture():
 @app.route('/upload-selfie', methods=['POST'])
 def upload_selfie():
     try:
-        data = request.get_json()
+        data = request.get_json(force=True)
         image_data = data.get('image')
         
         if image_data:
-            # For serverless, we'll just acknowledge the upload
-            # In production, you'd upload to cloud storage
-            session['selfie_uploaded'] = True
-            return jsonify({'success': True, 'message': 'Selfie uploaded successfully'})
+            # Extract base64 image data
+            if 'data:image' in image_data:
+                # Remove data URL prefix
+                image_data = image_data.split(',')[1]
+            
+            # Generate unique filename
+            journey_id = session.get('journey_id', str(uuid.uuid4()))
+            filename = f"selfie_{journey_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jpg"
+            
+            # For serverless deployment, save to /tmp directory
+             try:
+                # Decode base64 image
+                image_bytes = base64.b64decode(image_data)
+                
+                # Ensure upload directory exists
+                upload_dir = os.path.join(app.config['UPLOAD_FOLDER'], 'selfies')
+                os.makedirs(upload_dir, exist_ok=True)
+                
+                # Save file
+                file_path = os.path.join(upload_dir, filename)
+                with open(file_path, 'wb') as f:
+                    f.write(image_bytes)
+                
+                # Store in session
+                session['selfie_uploaded'] = True
+                session['selfie_filename'] = filename
+                session['selfie_path'] = file_path
+                
+                return jsonify({
+                    'success': True, 
+                    'message': 'Selfie uploaded successfully',
+                    'filename': filename
+                })
+                
+            except Exception as decode_error:
+                return jsonify({
+                    'success': False, 
+                    'error': f'Failed to process image: {str(decode_error)}'
+                })
         
         return jsonify({'success': False, 'error': 'No image data received'})
     except Exception as e:
-        return jsonify({'success': False, 'error': str(e)})
+        return jsonify({'success': False, 'error': f'Upload failed: {str(e)}'})
 
 @app.route('/feedback')
 def feedback():
